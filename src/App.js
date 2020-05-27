@@ -1,29 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Maze from './Maze'
-import TrainingForm from './TrainingForm'
+import MazeContainer from './maze/MazeContainer'
 
 function App() {
-  const [rows, setRows] = useState(15);
-  const [columns, setColumns] = useState(15);
-
-  const handleSubmit = (rows, columns) => {
-    setRows(rows);
-    setColumns(columns);
-  };
-
   return (
     <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <Maze rows={rows} columns={columns}/>
-          </div>
-          <div className="col">
-            {/* <TrainingForm onSubmit={handleSubmit}/> */}
-          </div>
-        </div>
-      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">VisuaRL</span>
+      </nav>
+      <MazeContainer/>
     </div>
   );
 }
