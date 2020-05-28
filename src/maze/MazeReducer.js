@@ -1,31 +1,25 @@
-const Status = {
-  EMPTY: 0, FILLED: 1, START: 2, END: 3
-}
-
-function nextStatus(value) {
-  switch (value) {
-    case Status.EMPTY: return Status.FILLED;
-    case Status.FILLED: return Status.EMPTY;
-    case Status.START: return Status.EMPTY;
-    case Status.END: return Status.EMPTY;
-    default: return Status.EMPTY;
-  }
-}
+import Status from './StatusEnum'
 
 const initialState = new Array(10).fill(new Array(10).fill(Status.EMPTY));
-function matrix(matrix = initialState, action) {
+function maze(state = initialState, action) {
   switch (action.type) {
-    case DECREMENT_SIZE:
-      return matrix.slice(0, matrix.length-1)
-                    .map(c => c.slice(0, matrix.length-1));
-    case INCREMENT_SIZE:
-      return matrix.map(c => c.concat(Status.EMPTY))
-                    .concat(new Array(matrix.length+1).fill(Status.EMPTY));
-    case UPDATE_SQUARE:
-      const mat = matrix.slice().map(c => c.slice());
-      mat[action.x][action.y] = nextStatus(action.value);
+    case "DECREMENT_SIZE":
+      return state.slice(0, state.length-1)
+                  .map(c => c.slice(0, state.length-1));
+    case "INCREMENT_SIZE":
+      return state.map(c => c.concat(Status.EMPTY))
+                  .concat(new Array(1).fill(new Array(state.length+1).fill(Status.EMPTY)));
+    case "UPDATE_SQUARE":
+      const mat = state.slice().map(c => c.slice());
+      mat[action.x][action.y] = action.value;
       return mat;
+    case "UNDO":
+      return state;
+    case "RESET":
+      return initialState;
     default:
-      return matrix;
+      return state;
   }
 }
+
+export default maze;

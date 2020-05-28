@@ -1,42 +1,65 @@
 import React from 'react';
-
 function MazeControls(props) {
-  let minusDisabled = minusValidation(props.size);
-  let plusDisabled = plusValidation(props.size);
+  // Setup
+  let size = props.size;
+
+  // Validation
+  let minusDisabled = minusValidation(size);
+  let plusDisabled = plusValidation(size);
+
+  // Handlers
+  const onDecrement = (e) => {
+    e.preventDefault();
+    props.onDecrement();
+  }
+
+  const onIncrement = (e) => {
+    e.preventDefault();
+    props.onIncrement();
+  }
+
+  const handleStart = (e) => {
+    e.preventDefault();
+  }
+
+  const handleEnd = (e) => {
+    e.preventDefault();
+  }
+
+  const handleUndo = (e) => {
+    e.preventDefault();
+    props.onUndo();
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    props.onReset();
+  }
 
   return (
-    <form>
-      <div className="form-group size-group">
-        <label>Size</label>
-        <div>
-          <button className="btn btn-sm btn-outline-primary"
-            onClick={(e) => props.onSizeChange(e, props.size - 1)}
-            disabled={minusDisabled}>
-            -
-          </button>
-          <span>{props.size}</span>
-          <button className="btn btn-sm btn-outline-primary"
-            onClick={(e) => props.onSizeChange(e, props.size + 1)}
-            disabled={plusDisabled}>
-            +
-          </button>
-        </div>
-      </div>
-      <div className="form-group marker-group">
-        <label>Markers</label>
-        <div>
-          <button type="button" class="btn btn-primary mr-2">Start</button>
-          <button type="button" class="btn btn-success">End</button>
-        </div>
-      </div>
-      <div className="form-group edit-group">
-        <label>Edit</label>
-        <div>
-          <button type="button" class="btn btn-secondary mr-2">Undo</button>
-          <button type="button" class="btn btn-danger">Reset</button>
-        </div>
-      </div>
-    </form>
+    <div className="maze-controls d-flex justify-content-between">
+      <span className="marker-group">
+          <button className="btn btn-sm btn-primary mr-2">Start</button>
+          <button className="btn btn-sm btn-success">End</button>
+      </span>
+      <span className="size-group">
+        <button className="btn btn-sm btn-outline-primary"
+          onClick={onDecrement}
+          disabled={minusDisabled}>
+          -
+        </button>
+        <span>{size}</span>
+        <button className="btn btn-sm btn-outline-primary"
+          onClick={onIncrement}
+          disabled={plusDisabled}>
+          +
+        </button>
+      </span>
+      <span className="edit-group">
+          <button className="btn btn-sm btn-secondary mr-2" onClick={handleUndo}>Undo</button>
+          <button className="btn btn-sm btn-danger" onClick={handleReset}>Reset</button>
+      </span>
+    </div>
   );
 }
 

@@ -1,35 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MazeContainer.css';
 import Maze from './Maze'
 import MazeControls from './MazeControls'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { incrementSize, decrementSize, updateSquare, undo, reset } from './MazeActions'
+
 function MazeContainer() {
   // Setup
-  const [size, setSize] = useState(10);
-
-  const handleSize = (e, size) => {
-    e.preventDefault();
-    setSize(size);
-  }
+  const matrix = useSelector(state => state.maze);
+  const dispatch = useDispatch();
 
   return (
-    <div className="container">
-    
-      <h2>Create maze</h2>
-      <div className="row">
-        <div className="col-lg">
-          <Maze size={size}/>
-        </div>
-        <div className="col-sm">
-          <MazeControls size={size}
-                        onSizeChange={handleSize}
-                        onUndo={handleUndo}
-                        onReset={handleReset} />
-        </div>
-      </div>
-      <div classname="row">
-          <h2>Train model</h2>
-      </div>
+    <div>
+      <MazeControls
+        size={matrix.length}
+        onIncrement={() => dispatch(incrementSize())}
+        onDecrement={() => dispatch(decrementSize())}
+        onUndo={() => dispatch(undo())}
+        onReset={() => dispatch(reset())}
+        />
+      <Maze
+        matrix={matrix}
+        onMouseEnter={(x, y, value) => dispatch(updateSquare(x, y, value))}
+        />
     </div>
   );
 }
