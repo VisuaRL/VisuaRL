@@ -3,21 +3,46 @@
 }
 
 .maze.container .col {
-  padding: 0px;
-  border: 1px solid white;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: thin solid #007bff;
 }
 
 .square {
+  position: relative;
   width: 100%;
-  padding-top: 100%;
-}
+  padding-bottom: 100%;
+} 
 
 .square.filled {
   background-color: white;
 }
 
+.square.start {
+  background-color: #007bff;
+}
+
+.square.end {
+  background-color: #28a745;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .maze-controls {
   margin-bottom: 10px;
+}
+
+.maze-controls-2 {
+  margin-top: 10px;
 }
 
 .size-group span {

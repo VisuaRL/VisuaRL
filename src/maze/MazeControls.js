@@ -20,27 +20,19 @@ function MazeControls(props) {
 
   const handleStart = (e) => {
     e.preventDefault();
+    props.onStart();
   }
 
   const handleEnd = (e) => {
     e.preventDefault();
-  }
-
-  const handleUndo = (e) => {
-    e.preventDefault();
-    props.onUndo();
-  }
-
-  const handleReset = (e) => {
-    e.preventDefault();
-    props.onReset();
+    props.onEnd();
   }
 
   return (
     <div className="maze-controls d-flex justify-content-between">
       <span className="marker-group">
-          <button className="btn btn-sm btn-primary mr-2">Start</button>
-          <button className="btn btn-sm btn-success">End</button>
+          <button className="btn btn-sm btn-info mr-2" onClick={handleStart}>Start</button>
+          <button className="btn btn-sm btn-info" onClick={handleEnd}>End</button>
       </span>
       <span className="size-group">
         <button className="btn btn-sm btn-outline-primary"
@@ -54,10 +46,6 @@ function MazeControls(props) {
           disabled={plusDisabled}>
           +
         </button>
-      </span>
-      <span className="edit-group">
-          <button className="btn btn-sm btn-secondary mr-2" onClick={handleUndo}>Undo</button>
-          <button className="btn btn-sm btn-danger" onClick={handleReset}>Reset</button>
       </span>
     </div>
   );
@@ -78,7 +66,5 @@ function plusValidation(size) {
   }
   return disabled;
 }
-
-
 
 export default MazeControls;

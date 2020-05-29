@@ -8,8 +8,13 @@ function TrainerContainer() {
   // Setup
   const dispatch = useDispatch();
 
+  // Handler
+  const handleSubmit = () => {
+    
+  }
+
   return (
-    <Trainer/>
+    <Trainer onSubmit={handleSubmit}/>
   );
 }
 

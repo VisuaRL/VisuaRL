@@ -3,6 +3,7 @@ import Status from './StatusEnum';
 
 const Square = React.memo(function Square(props) {
   let statusClass;
+  let content;
   switch (props.value) {
     case Status.EMPTY:
       statusClass = "square empty";
@@ -11,10 +12,12 @@ const Square = React.memo(function Square(props) {
       statusClass = "square filled";
       break;
     case Status.START:
-      statusClass = "square start";
+      statusClass = "square filled";
+      content = "S"
       break;
     case Status.END:
-      statusClass = "square end";
+      statusClass = "square filled";
+      content = "E"
       break;
     default:
       statusClass = "square";
@@ -26,6 +29,7 @@ const Square = React.memo(function Square(props) {
       onMouseDown={props.onMouseEnter}
       onMouseEnter={props.onMouseEnter}
     >
+      <span className="marker">{content}</span>
     </div>
   )
 })

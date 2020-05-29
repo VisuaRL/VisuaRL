@@ -17,3 +17,15 @@ export function undo() {
 export function reset() {
   return {type: "RESET"}
 }
+
+export function startMarker() {
+  return {type: "START_MARKER"}
+}
+
+export function endMarker() {
+  return {type: "END_MARKER"}
+}
+
+export function resetMarker() {
+  return {type: "RESET_MARKER"}
+}
