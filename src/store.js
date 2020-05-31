@@ -4,5 +4,6 @@ import maze from './maze/MazeReducer';
 import trainer from './trainer/TrainerReducer'
 
 let devtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const store = createStore(combineReducers({maze, trainer}, applyMiddleware(thunk)));
+const store = createStore(combineReducers({maze, trainer}), 
+                        compose(applyMiddleware(thunk), devtools));
 export default store;

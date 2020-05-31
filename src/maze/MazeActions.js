@@ -29,3 +29,15 @@ export function endMarker() {
 export function resetMarker() {
   return {type: "RESET_MARKER"}
 }
+
+export function nextStage() {
+  return {type: "NEXT_STAGE"}
+}
+
+export function prevStage() {
+  return {type: "PREV_STAGE"}
+}
+
+export function resetStage() {
+  return {type: "RESET_STAGE"};
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import './TrainerContainer.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { train, test } from './TrainerActions'
+import { train } from './TrainerActions'
+import { resetStage } from '../maze/MazeActions'
 
 import Trainer from'./Trainer'
 
@@ -10,10 +11,11 @@ function TrainerContainer() {
   const matrix = useSelector(state => state.maze.matrix);
   const dispatch = useDispatch();
 
-  dispatch(test());
-
   return (
-    <Trainer onSubmit={data => dispatch(train(matrix, data))}/>
+    <Trainer onSubmit={data => {
+      dispatch(resetStage());
+      dispatch(train(matrix, data))
+    }}/>
   );
 }
 

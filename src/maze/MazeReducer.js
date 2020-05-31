@@ -45,6 +45,19 @@ function marker(state = Status.EMPTY, action) {
   }
 }
 
+function stage(state = 0, action) {
+  switch(action.type) {
+    case "RESET_STAGE":
+      return 0;
+    case "NEXT_STAGE":
+      return state + 1;
+    case "PREV_STAGE":
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
 function updateSquare(state, action) {
   // Copy matrix
   const mat = state.slice().map(c => c.slice());
@@ -62,4 +75,4 @@ function updateSquare(state, action) {
   return mat;
 }
 
-export default combineReducers({ matrix, marker });
+export default combineReducers({ matrix, marker, stage });

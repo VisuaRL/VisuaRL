@@ -18,4 +18,4 @@ function error(state = "No errors", action) {
   }
 }
 
-export default combineReducers({ values, error }); 
+export default combineReducers({ values, error });

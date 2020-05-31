@@ -12,10 +12,10 @@ function App() {
 
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col col-lg-6">
+          <div className="col col-xl-7 col-lg-7 col-md-9">
             <MazeContainer/>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <TrainingContainer/>
           </div>
         </div>

@@ -7,8 +7,7 @@ function Maze(props) {
   const matrix = props.matrix;
   const marker = props.marker;
   const values = props.values;
-
-  const current = values[values.length - 1];
+  const current = values[props.currentIndex];
 
   // Event handler
   const nextStatus = (status) => {

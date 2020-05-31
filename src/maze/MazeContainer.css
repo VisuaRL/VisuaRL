@@ -1,5 +1,12 @@
 .maze.container {
   background-color: black;
+  font-size: 0.9rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .maze.container {
+    font-size: 0.7rem;
+  }
 }
 
 .maze.container .col {
@@ -19,14 +26,16 @@
 }
 
 .square.start {
-  background-color: #007bff;
+  background-color: #28a745;
+  color: white;
 }
 
 .square.end {
-  background-color: #28a745;
+  background-color: #dc3545;
+  color: white;
 }
 
-.marker {
+.value {
   position: absolute;
   top: 0;
   bottom: 0;

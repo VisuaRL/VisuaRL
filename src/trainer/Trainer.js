@@ -21,13 +21,13 @@ function Trainer(props) {
         <select className="custom-select" 
         name="algo"
         ref={register}>
-          <option value="dp">Model-based</option>
+          <option value="dp">Dynamic programming</option>
           <option value="sa">State-action</option>
         </select>
       </div>
 
       <div className="form-group">
-        <label>Gamma (0 to 1)</label>
+        <label>Gamma<br/>(0 to 1)</label>
         <input className="form-control"
           name="gamma"
           type="number"
@@ -41,7 +41,7 @@ function Trainer(props) {
       </div>
 
       <div className="form-group">
-        <label>Alpha (0 to 1)</label>
+        <label>Alpha<br/>(0 to 1)</label>
         <input className="form-control"
           disabled={alphaDisabled}
           name="alpha"

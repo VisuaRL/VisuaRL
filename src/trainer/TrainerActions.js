@@ -1,19 +1,15 @@
 import axios from 'axios'
 
-export function test() {
-    return dispatch => {
-        console.log("TEST THUNK!");
-    }
-}
-
 export function train(matrix, data) {
     return dispatch => {
-        const { algo, gamma, alpha } = data;
+        let { algo, gamma, alpha } = data;
+        gamma = parseFloat(gamma);
+        alpha = parseFloat(alpha);
         const req = { matrix, algo, gamma, alpha };
         dispatch(trainStart());
         return axios.post("https://vrl-api.azurewebsites.net/trainer", req)
-                    .then(response => dispatch(trainFinish(response.data.values)))
-                    .catch(error => dispatch(trainError(error)));
+            .then(response => dispatch(trainFinish(response.data.values)))
+            .catch(error => dispatch(trainError(error)));
     }
 }
 
@@ -25,14 +21,15 @@ function trainError(error) {
     return { type: "TRAIN_ERROR", error };
 }
 
-function trainFinish(model) {
-    return { type: "TRAIN_FINISH" , model }
+function trainFinish(values) {
+    console.dir(values);
+    return { type: "TRAIN_FINISH", values }
 }
 
 /*
 { type: "TRAINER_SUBMIT",
 matrix,
 algo: data.algo,
-gamma: parseFloat(data.gamma), 
+gamma: parseFloat(data.gamma),
 alpha: parseFloat(data.alpha) }
 */

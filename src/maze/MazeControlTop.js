@@ -7,55 +7,29 @@ function MazeControlTop(props) {
   let minusDisabled = minusValidation(size);
   let plusDisabled = plusValidation(size);
 
-  // Handlers
-  const onDecrement = (e) => {
-    e.preventDefault();
-    props.onDecrement();
-  }
-
-  const onIncrement = (e) => {
-    e.preventDefault();
-    props.onIncrement();
-  }
-
-  const handleStart = (e) => {
-    e.preventDefault();
-    props.onStart();
-  }
-
-  const handleEnd = (e) => {
-    e.preventDefault();
-    props.onEnd();
-  }
-
-  const handleReset = (e) => {
-    e.preventDefault();
-    props.onReset();
-  }
-
   return (
     <div className="maze-controls d-flex justify-content-between">
       <div>
         <span className="size-group mr-2">
           <button className="btn btn-sm btn-outline-primary"
-            onClick={onDecrement}
+            onClick={props.onDecrement}
             disabled={minusDisabled}>
             -
           </button>
-          <span>{size}</span>
+          <span>{size} x {size}</span>
           <button className="btn btn-sm btn-outline-primary"
-            onClick={onIncrement}
+            onClick={props.onIncrement}
             disabled={plusDisabled}>
             +
           </button>
         </span>
         <span className="marker-group">
-            <button className="btn btn-sm btn-info mr-2" onClick={handleStart}>Start</button>
-            <button className="btn btn-sm btn-info" onClick={handleEnd}>End</button>
+            <button className="btn btn-sm btn-success mr-2" onClick={props.onStart}>Start</button>
+            <button className="btn btn-sm btn-danger" onClick={props.onEnd}>End</button>
         </span>
 
       </div>
-      <button className="btn btn-sm btn-danger" onClick={handleReset}>Clear</button>
+      <button className="btn btn-sm btn-primary" onClick={props.onReset}>Clear</button>
     </div>
   );
 }
