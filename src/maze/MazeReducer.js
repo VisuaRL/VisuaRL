@@ -50,9 +50,9 @@ function updateSquare(state, action) {
   const mat = state.slice().map(c => c.slice());
 
   // Remove other marker values
-  if (action.value == Status.START || action.value == Status.END) {
+  if (action.value === Status.START || action.value === Status.END) {
     mat.forEach(r => {
-      let index = r.findIndex(x => x == action.value);
+      let index = r.findIndex(x => x === action.value);
       r[index] = Status.EMPTY;
     });
   }

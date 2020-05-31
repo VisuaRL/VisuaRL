@@ -6,18 +6,21 @@ function Maze(props) {
   // Setup
   const matrix = props.matrix;
   const marker = props.marker;
+  const values = props.values;
+
+  const current = values[values.length - 1];
 
   // Event handler
-  const nextStatus = (value) => {
+  const nextStatus = (status) => {
     // If marker selected
-    if(marker == Status.START || marker == Status.END) {
+    if(marker === Status.START || marker === Status.END) {
       let result = marker;
       props.resetMarker();
       return result;
     }
 
     // If no marker
-    switch (value) {
+    switch (status) {
       case Status.EMPTY: return Status.FILLED;
       case Status.FILLED: return Status.EMPTY;
       case Status.START: return Status.EMPTY;
@@ -26,21 +29,22 @@ function Maze(props) {
     }
   }
 
-  const handleEnter = (e, x, y, value) => {
+  const handleEnter = (e, x, y, status) => {
     e.preventDefault();
     if (e.buttons === 1) {
-      props.onMouseEnter(x, y, nextStatus(value));
+      props.onMouseEnter(x, y, nextStatus(status));
     }
   }
 
   // Rendering
   const display = matrix.map((row, x) =>
     <div key={x} className="row">
-      {row.map((value, y) =>
+      {row.map((status, y) =>
         <div key={y} className="col special">
           <Square
-            value={value}
-            onMouseEnter={(e) => handleEnter(e, x, y, value)} />
+            status={status}
+            value={values.length !== 0 && current[x][y]}
+            onMouseEnter={(e) => handleEnter(e, x, y, status)} />
         </div>)}
     </div>);
 

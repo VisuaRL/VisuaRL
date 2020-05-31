@@ -1,36 +1,37 @@
 import React from 'react';
 import './MazeContainer.css';
 import Maze from './Maze'
-import MazeControls from './MazeControls'
-import MazeControls2 from './MazeControls2'
+import MazeControlTop from './MazeControlTop'
+import MazeControlBottom from './MazeControlsBottom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementSize, decrementSize, updateSquare, startMarker, endMarker, resetMarker, save, reset } from './MazeActions'
+import { incrementSize, decrementSize, updateSquare, startMarker, endMarker, resetMarker, reset } from './MazeActions'
 
 function MazeContainer() {
   // Setup
   const matrix = useSelector(state => state.maze.matrix);
   const marker = useSelector(state => state.maze.marker);
+  const values = useSelector(state => state.trainer.values);
   const dispatch = useDispatch();
 
   return (
     <div>
-      <MazeControls
+      <MazeControlTop
         size={matrix.length}
         onIncrement={() => dispatch(incrementSize())}
         onDecrement={() => dispatch(decrementSize())}
         onStart={() => dispatch(startMarker())}
         onEnd={() => dispatch(endMarker())}
+        onReset={() => dispatch(reset())}
         />
       <Maze
         matrix={matrix}
         marker={marker}
+        values={values}
         resetMarker={() => dispatch(resetMarker())}
         onMouseEnter={(x, y, value) => dispatch(updateSquare(x, y, value))}
         />
-      <MazeControls2
-        onReset={() => dispatch(reset())}
-        />
+      {/* <MazeControlBottom/> */}
     </div>
   );
 }

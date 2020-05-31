@@ -4,7 +4,7 @@ import Status from './StatusEnum';
 const Square = React.memo(function Square(props) {
   let statusClass;
   let content;
-  switch (props.value) {
+  switch (props.status) {
     case Status.EMPTY:
       statusClass = "square empty";
       break;
