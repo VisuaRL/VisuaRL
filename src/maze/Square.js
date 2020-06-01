@@ -29,7 +29,8 @@ const Square = React.memo(function Square(props) {
       onMouseDown={props.onMouseEnter}
       onMouseEnter={props.onMouseEnter}>
       <div className="content">
-        {(value && display==="values") &&
+        {/* false needed to stop 0 from render */}
+        {(value !== false && display==="values") &&
           <span>
             {round(value)}
           </span>
