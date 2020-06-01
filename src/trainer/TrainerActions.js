@@ -6,30 +6,49 @@ export function train(matrix, data) {
         gamma = parseFloat(gamma);
         alpha = parseFloat(alpha);
         const req = { matrix, algo, gamma, alpha };
-        dispatch(trainStart());
+        dispatch(trainerStart());
         return axios.post("https://vrl-api.azurewebsites.net/trainer", req)
-            .then(response => dispatch(trainFinish(response.data.values)))
-            .catch(error => dispatch(trainError(error)));
+            .then(response => {
+                const { values, arrows } = response.data;
+                dispatch(trainerValues(values));
+                dispatch(trainerArrows(arrows));
+            })
+            .catch(error => dispatch(trainerError(error)));
     }
 }
 
-function trainStart() {
+export function trainerReset() {
+    return { type: "TRAINER_RESET" };
+}
+
+export function trainerDisplay(display) {
+    return { type: "TRAINER_DISPLAY", display }
+}
+
+function trainerValues(values) {
+    return { type: "TRAINER_VALUES", values }
+}
+
+function trainerArrows(arrows) {
+    return { type: "TRAINER_ARROWS", arrows }
+}
+
+function trainerStart() {
     return { type: "TRAIN_START" };
 }
 
-function trainError(error) {
+function trainerError(error) {
     return { type: "TRAIN_ERROR", error };
 }
 
-function trainFinish(values) {
-    console.dir(values);
-    return { type: "TRAIN_FINISH", values }
+export function nextStage() {
+    return { type: "NEXT_STAGE" }
 }
 
-/*
-{ type: "TRAINER_SUBMIT",
-matrix,
-algo: data.algo,
-gamma: parseFloat(data.gamma),
-alpha: parseFloat(data.alpha) }
-*/
+export function prevStage() {
+    return { type: "PREV_STAGE" }
+}
+
+export function resetStage() {
+    return { type: "RESET_STAGE" };
+}

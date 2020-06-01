@@ -23,9 +23,7 @@ function matrix(state = defaultMatrix, action) {
         .concat(new Array(1).fill(new Array(state.length + 1).fill(Status.EMPTY)));
     case "UPDATE_SQUARE":
       return updateSquare(state, action);
-    case "UNDO":
-      return state;
-    case "RESET":
+    case "CLEAR_MAZE":
       return new Array(10).fill(new Array(10).fill(Status.EMPTY));
     default:
       return state;
@@ -40,19 +38,6 @@ function marker(state = Status.EMPTY, action) {
       return Status.START;
     case "END_MARKER":
       return Status.END;
-    default:
-      return state;
-  }
-}
-
-function stage(state = 0, action) {
-  switch(action.type) {
-    case "RESET_STAGE":
-      return 0;
-    case "NEXT_STAGE":
-      return state + 1;
-    case "PREV_STAGE":
-      return state - 1;
     default:
       return state;
   }
@@ -75,4 +60,4 @@ function updateSquare(state, action) {
   return mat;
 }
 
-export default combineReducers({ matrix, marker, stage });
+export default combineReducers({ matrix, marker });

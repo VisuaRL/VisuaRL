@@ -1,8 +1,7 @@
 import React from 'react';
 import './TrainerContainer.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { train } from './TrainerActions'
-import { resetStage } from '../maze/MazeActions'
+import { train, resetStage } from './TrainerActions'
 
 import Trainer from'./Trainer'
 

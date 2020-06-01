@@ -3,7 +3,13 @@ import './App.css';
 import MazeContainer from './maze/MazeContainer'
 import TrainingContainer from './trainer/TrainerContainer'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowUp, faArrowDown, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 function App() {
+  // fontawesome
+  library.add(faArrowUp, faArrowDown, faArrowLeft, faArrowRight);
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">

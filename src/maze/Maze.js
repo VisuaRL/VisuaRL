@@ -4,10 +4,9 @@ import Status from './StatusEnum';
 
 function Maze(props) {
   // Setup
-  const matrix = props.matrix;
-  const marker = props.marker;
-  const values = props.values;
-  const current = values[props.currentIndex];
+  const { matrix, marker, values, arrows, display } = props;
+  const currentValues = values[props.currentIndex];
+  const currentArrows = arrows[props.currentIndex];
 
   // Event handler
   const nextStatus = (status) => {
@@ -30,26 +29,28 @@ function Maze(props) {
 
   const handleEnter = (e, x, y, status) => {
     e.preventDefault();
-    if (e.buttons === 1) {
+    if (values.length === 0 & e.buttons === 1) {
       props.onMouseEnter(x, y, nextStatus(status));
     }
   }
 
   // Rendering
-  const display = matrix.map((row, x) =>
+  const squares = matrix.map((row, x) =>
     <div key={x} className="row">
       {row.map((status, y) =>
         <div key={y} className="col special">
           <Square
             status={status}
-            value={values.length !== 0 && current[x][y]}
+            display={display}
+            value={values.length !== 0 && currentValues[x][y]}
+            arrow={arrows.length !== 0 && currentArrows[x][y]}
             onMouseEnter={(e) => handleEnter(e, x, y, status)} />
         </div>)}
     </div>);
 
   return (
     <div className="maze container">
-      {display}
+      {squares}
     </div>
   );
 }

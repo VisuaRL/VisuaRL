@@ -1,3 +1,4 @@
+/* Maze styles */
 .maze.container {
   background-color: black;
   font-size: 0.9rem;
@@ -15,37 +16,79 @@
   border: thin solid #007bff;
 }
 
+/* Square styles */
 .square {
   position: relative;
   width: 100%;
   padding-bottom: 100%;
 } 
 
+@keyframes lift{
+  from { transform: scale(1, 1) }
+  to { 
+    transform: scale(1.2, 1.2);
+    position: absolute;
+    z-index: 2;
+  }
+}
+
 .square.filled {
   background-color: white;
+  color: black;
+  animation-name: lift;
+  animation-duration: 0.2s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
 }
 
 .square.start {
   background-color: #28a745;
   color: white;
+  animation-name: lift;
+  animation-duration: 0.2s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
 }
 
 .square.end {
   background-color: #dc3545;
   color: white;
+  animation-name: lift;
+  animation-duration: 0.2s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
 }
 
-.value {
+/* Square content styles */
+.square .content {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
+.arrows {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex-br {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.arrow {
+  width: 100%;
+}
+
+/* Maze control styles */
 .maze-controls {
   margin-bottom: 10px;
 }

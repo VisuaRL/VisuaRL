@@ -1,17 +1,12 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Status from './StatusEnum';
-import { useSpring, animated } from 'react-spring'
 
 const Square = React.memo(function Square(props) {
-  // Animations
-  const spring = useSpring({
-    value: round(props.value),
-    delay: 0,
-    config: {friction: 22, clamp: true}
-  });
+  let { status, display, value, arrow } = props;
 
   let statusClass;
-  switch (props.status) {
+  switch (status) {
     case Status.EMPTY:
       statusClass = "square empty";
       break;
@@ -32,18 +27,32 @@ const Square = React.memo(function Square(props) {
     <div
       className={statusClass}
       onMouseDown={props.onMouseEnter}
-      onMouseEnter={props.onMouseEnter}
-    >
-      <animated.span className="value">
-        {props.value && spring.value.interpolate(n => round(n))}
-      </animated.span>
+      onMouseEnter={props.onMouseEnter}>
+      <div className="content">
+        {(value && display==="values") &&
+          <span>
+            {round(value)}
+          </span>
+        }
+        
+        {(arrow && display==="arrows") &&
+          <div className="arrows">
+            {arrow.up && <FontAwesomeIcon icon="arrow-up" />}
+            <div className="flex-br"/>
+            {arrow.left && <FontAwesomeIcon icon="arrow-left" />}
+            {arrow.right && <FontAwesomeIcon icon="arrow-right" />}
+            <div className="flex-br"/>
+            {arrow.down && <FontAwesomeIcon icon="arrow-down" />}
+          </div>
+        }
+      </div>
     </div>
   )
 })
 
 function round(value) {
   if (isNaN(value)) {
-    return value;
+    return "";
   } else {
     return Number(value).toFixed(3);
   }
