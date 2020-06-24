@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import MazeContainer from './maze/MazeContainer'
-import TrainingContainer from './trainer/TrainerContainer'
+import Maze from './maze/Maze'
+import Trainer from './trainer/Trainer'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowUp, faArrowDown, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -19,10 +19,10 @@ function App() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col col-xl-7 col-lg-7 col-md-9">
-            <MazeContainer/>
+            <Maze/>
           </div>
           <div className="col-md-3">
-            <TrainingContainer/>
+            <Trainer/>
           </div>
         </div>
       </div>

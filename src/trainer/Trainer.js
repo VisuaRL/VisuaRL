@@ -1,9 +1,13 @@
 import React from 'react';
+import './Trainer.css';
 import { useForm } from 'react-hook-form';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
 
-function Trainer(props) {
-  // Setup
+import { useSelector, useDispatch } from 'react-redux';
+import { requestTraining } from '../redux/trainer';
+
+function Trainer() {
+  // Setup form
   const defaultValues = {
     algo: "dp",
     gamma: 0,
@@ -11,9 +15,14 @@ function Trainer(props) {
   };
   const { register, watch, handleSubmit } = useForm({defaultValues});
 
-  // Disable inputs based on algo selection
+  // Validation
   let algo = watch("algo");
   let alphaDisabled = validateAlpha(algo);
+
+  // Submit
+  const matrix = useSelector(state => state.maze.matrix);
+  const dispatch = useDispatch();
+  const submit = data => dispatch(requestTraining(matrix, data));
 
   // Popover
   const gammaPop = (
@@ -31,7 +40,7 @@ function Trainer(props) {
   return (
     <div className="mt-2">
     <h2> Trainer </h2>
-      <form onSubmit={handleSubmit(props.onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <div className="form-group">
           <label>Algorithm</label>
           <select className="custom-select" 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Status from './StatusEnum';
+import Status from '../constants/status';
 
 const Square = React.memo(function Square(props) {
   let { status, display, value, arrow } = props;
