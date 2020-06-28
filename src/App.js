@@ -1,14 +1,20 @@
-import React from 'react';
-import './App.css';
-import Maze from './maze/Maze'
-import Trainer from './trainer/Trainer'
+import React from "react";
+import "./App.css";
+import Maze from "./maze/Maze";
+import Trainer from "./trainer/Trainer";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowUp, faArrowDown, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faArrowUp,
+  faArrowDown,
+  faArrowLeft,
+  faArrowRight,
+  faRobot
+} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   // fontawesome
-  library.add(faArrowUp, faArrowDown, faArrowLeft, faArrowRight);
+  library.add(faArrowUp, faArrowDown, faArrowLeft, faArrowRight, faRobot);
 
   return (
     <div className="App">
@@ -19,10 +25,10 @@ function App() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col col-xl-7 col-lg-7 col-md-9">
-            <Maze/>
+            <Maze />
           </div>
           <div className="col-md-3">
-            <Trainer/>
+            <Trainer />
           </div>
         </div>
       </div>

@@ -84,10 +84,6 @@
   height: 0;
 }
 
-.arrow {
-  width: 100%;
-}
-
 /* Maze control styles */
 .maze-controls {
   margin-bottom: 10px;

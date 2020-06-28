@@ -1,14 +1,14 @@
-import React from 'react';
-import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 
-import { changeDisplay, prevStage, nextStage } from '../redux/trainer';
+import { changeDisplay, prevStage, nextStage } from "../redux/trainer";
 
 function MazeStages() {
   // Setup
   const display = useSelector(state => state.trainer.display);
   const currentStage = useSelector(state => state.trainer.stage + 1);
-  const totalStages = useSelector(state => state.trainer.values.length);
+  const totalStages = useSelector(state => state.trainer.totalStages);
 
   const dispatch = useDispatch();
 
@@ -18,20 +18,37 @@ function MazeStages() {
 
   return (
     <div className="maze-controls-2 d-flex justify-content-between">
-      <ToggleButtonGroup type="radio" name="options" value={display} onChange={value => dispatch(changeDisplay(value))}>
-        <ToggleButton variant="info" size="sm" value="values">Values</ToggleButton>
-        <ToggleButton variant="info" size="sm" value="arrows">Arrows</ToggleButton>
-      </ToggleButtonGroup>
+      {(display === "values" || display === "arrows") && (
+        <ToggleButtonGroup
+          type="radio"
+          name="options"
+          value={display}
+          onChange={value => dispatch(changeDisplay(value))}
+        >
+          <ToggleButton variant="info" size="sm" value="values">
+            Values
+          </ToggleButton>
+          <ToggleButton variant="info" size="sm" value="arrows">
+            Arrows
+          </ToggleButton>
+        </ToggleButtonGroup>
+      )}
       <div>
-        <button className="btn btn-sm btn-outline-primary"
+        <button
+          className="btn btn-sm btn-outline-primary"
           disabled={prevDisabled}
-          onClick={() => dispatch(prevStage())}>
+          onClick={() => dispatch(prevStage())}
+        >
           Back
         </button>
-        <span className="mr-2 ml-2">Training stage {currentStage}/{totalStages}</span>
-        <button className="btn btn-sm btn-outline-primary"
+        <span className="mr-2 ml-2">
+          Training stage {currentStage}/{totalStages}
+        </span>
+        <button
+          className="btn btn-sm btn-outline-primary"
           disabled={nextDisabled}
-          onClick={() => dispatch(nextStage())}>
+          onClick={() => dispatch(nextStage())}
+        >
           Next
         </button>
       </div>
@@ -54,6 +71,5 @@ function nextValidation(current, total) {
   }
   return disabled;
 }
-
 
 export default MazeStages;

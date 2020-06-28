@@ -18,12 +18,14 @@ const mazeSlice = createSlice({
   initialState: { matrix: initial, marker: Status.EMPTY },
   reducers: {
     decrementSize: state => {
-      state.matrix = state.matrix.slice(0, state.length - 1)
-        .map(c => c.slice(0, state.length - 1));
+      let mat = state.matrix;
+      state.matrix = mat.slice(0, mat.length - 1)
+        .map(c => c.slice(0, mat.length - 1));
     },
     incrementSize: state => {
-      state.matrix = state.matrix.map(c => c.concat(Status.EMPTY))
-        .concat(new Array(1).fill(new Array(state.length + 1).fill(Status.EMPTY)));
+      let mat = state.matrix;
+      state.matrix = mat.map(c => c.concat(Status.EMPTY))
+        .concat(new Array(1).fill(new Array(mat.length + 1).fill(Status.EMPTY)));
     },
     updateSquare: (state, action) => {
       let current = action.payload.status;
