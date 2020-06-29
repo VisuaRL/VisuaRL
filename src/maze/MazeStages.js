@@ -16,6 +16,22 @@ function MazeStages() {
   let prevDisabled = prevValidation(currentStage);
   let nextDisabled = nextValidation(currentStage, totalStages);
 
+  let algo;
+  switch(display) {
+    case "values":
+      algo = "DP";
+      break;
+    case "arrows":
+      algo = "DP";
+      break;
+    case "qTable":
+      algo = "QL";
+      break;
+    default:
+      algo = "NONE";
+      break;
+  }
+
   return (
     <div className="maze-controls-2 d-flex justify-content-between">
       {(display === "values" || display === "arrows") && (
@@ -42,7 +58,7 @@ function MazeStages() {
           Back
         </button>
         <span className="mr-2 ml-2">
-          Training stage {currentStage}/{totalStages}
+          Training stage ({algo}) {currentStage}/{totalStages}
         </span>
         <button
           className="btn btn-sm btn-outline-primary"

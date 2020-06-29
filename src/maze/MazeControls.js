@@ -6,7 +6,7 @@ import { resetTrainer } from '../redux/trainer';
 
 function MazeControls() {
   // Setup
-  const isTrained = useSelector(state => state.trainer.values.length !== 0);
+  const isTrained = useSelector(state => state.trainer.display !== "none");
   const size = useSelector(state => state.maze.matrix.length);
   const dispatch = useDispatch();
 

@@ -2,7 +2,6 @@ import React from "react";
 import "./Trainer.css";
 import { useForm } from "react-hook-form";
 import { Modal, Popover, OverlayTrigger } from "react-bootstrap";
-
 import { useSelector, useDispatch } from "react-redux";
 import { requestTraining } from "../redux/trainer";
 
@@ -10,7 +9,7 @@ function Trainer() {
   // Setup form
   const defaultValues = {
     algo: "dp",
-    gamma: 0.5,
+    gamma: 1,
     alpha: 0.5
   };
   const { register, watch, handleSubmit } = useForm({ defaultValues });
@@ -58,7 +57,7 @@ function Trainer() {
             type="number"
             min="0"
             max="1"
-            step="0.001"
+            step="0.1"
             ref={register({ min: 0, max: 1 })}
           />
         </div>
@@ -83,7 +82,7 @@ function Trainer() {
             type="number"
             min="0"
             max="1"
-            step="0.001"
+            step="0.1"
             ref={register({ min: 0, max: 1 })}
           />
         </div>
