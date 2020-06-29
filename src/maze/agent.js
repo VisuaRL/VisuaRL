@@ -23,9 +23,9 @@ function checkStop(agent, matrix) {
 function randomLegalMove(agent, matrix) {
   const { x, y } = agent;
   const up = x > 0 ? matrix[x - 1][y] : undefined;
-  const down = x < matrix.length ? matrix[x + 1][y] : undefined;
+  const down = x < matrix.length - 1 ? matrix[x + 1][y] : undefined;
   const left = y > 0 ? matrix[x][y - 1] : undefined;
-  const right = y < matrix.length ? matrix[x][y + 1] : undefined;
+  const right = y < matrix.length - 1 ? matrix[x][y + 1] : undefined;
 
   let legalArr = [];
   if (up !== undefined && up !== 0) {
@@ -48,8 +48,6 @@ function randomLegalMove(agent, matrix) {
 }
 
 function argMax(arr) {
-  console.log(arr);
-
   // Find max
   let max = arr[0];
   for (let i = 1; i < arr.length; i++) {
