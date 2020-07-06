@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { incrementSize, decrementSize, startMarker, endMarker, clearMaze } from '../redux/maze';
+import { incrementSize, decrementSize, startMarker, endMarker, clearMaze, defaultMaze } from '../redux/maze';
 import { resetTrainer } from '../redux/trainer'; 
 
 function MazeControls() {
@@ -15,15 +15,15 @@ function MazeControls() {
   let plusDisabled = plusValidation(size);
 
   // Reset
-  function resetMaze() {
-    dispatch(clearMaze());
+  function newMaze() {
+    dispatch(defaultMaze());
     dispatch(resetTrainer());
   }
 
   return (
     <div className="maze-controls d-flex justify-content-between">
       {isTrained && 
-        <button className="btn btn-sm btn-primary" onClick={resetMaze}>
+        <button className="btn btn-sm btn-primary" onClick={newMaze}>
           New maze
         </button>}
       {!isTrained &&

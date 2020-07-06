@@ -6,9 +6,8 @@ import { agentUp, agentDown, agentLeft, agentRight } from "../redux/trainer";
 import ValueContent from "./square/ValueContent";
 import ArrowContent from "./square/ArrowContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Direction, checkStop, nextMove } from "./agent"
-import { useInterval } from "../util"
-
+import { Direction, checkStop, nextMove } from "./agent";
+import { useInterval } from "../util";
 
 function MazeGrid() {
   // Setup
@@ -31,32 +30,35 @@ function MazeGrid() {
   };
 
   //Agent
-  let agentDisplay = (display === "qTable");
+  let agentDisplay = display === "qTable";
   let stop = checkStop(agent, matrix);
-  useInterval(() => {
-    // Get current Q values and epsilon
-    let currentQ = qTable[stage][agent.x][agent.y];
-    let currentEps = epsilon[stage];
+  useInterval(
+    () => {
+      // Get current Q values and epsilon
+      let currentQ = qTable[stage][agent.x][agent.y];
+      let currentEps = epsilon[stage];
 
-    // Make decision
-    let dir = nextMove(currentQ, currentEps, agent, matrix);
-    switch (dir) {
-      case Direction.UP:
-        dispatch(agentUp());
-        break;
-      case Direction.DOWN:
-        dispatch(agentDown());
-        break;
-      case Direction.LEFT:
-        dispatch(agentLeft());
-        break;
-      case Direction.RIGHT:
-        dispatch(agentRight());
-        break;
-      default:
-        console.error("no direction");
-    }
-  }, (agentDisplay && !stop) ? 200 : null);
+      // Make decision
+      let dir = nextMove(currentQ, currentEps, agent, matrix);
+      switch (dir) {
+        case Direction.UP:
+          dispatch(agentUp());
+          break;
+        case Direction.DOWN:
+          dispatch(agentDown());
+          break;
+        case Direction.LEFT:
+          dispatch(agentLeft());
+          break;
+        case Direction.RIGHT:
+          dispatch(agentRight());
+          break;
+        default:
+          console.error("no direction");
+      }
+    },
+    agentDisplay && !stop ? 500 : null
+  );
 
   // Render
   const renderContent = (x, y) => {
@@ -66,8 +68,17 @@ function MazeGrid() {
       case "arrows":
         return <ArrowContent arrow={arrows[stage][x][y]} />;
       case "qTable":
+        let current = qTable[stage][agent.x][agent.y];
         if (x === agent.x && y === agent.y) {
           return <FontAwesomeIcon icon="robot" />;
+        } else if (x === agent.x - 1 && y === agent.y) {
+          return <ValueContent value={current[Direction.UP]}/>;
+        } else if (x === agent.x + 1 && y === agent.y) {
+          return <ValueContent value={current[Direction.DOWN]}/>;
+        } else if (x === agent.x && y === agent.y - 1) {
+          return <ValueContent value={current[Direction.LEFT]}/>;
+        } else if (x === agent.x && y === agent.y + 1) {
+          return <ValueContent value={current[Direction.RIGHT]}/>;
         }
       default:
         return;

@@ -47,6 +47,7 @@ const mazeSlice = createSlice({
       // Update value
       state.matrix[action.payload.x][action.payload.y] = next;
     },
+    defaultMaze: state => {state.matrix = initial},
     clearMaze: state => {state.matrix = new Array(10).fill(new Array(10).fill(Status.EMPTY))},
     resetMarker: state => {state.marker = Status.EMPTY},
     startMarker: state => {state.marker = Status.START},
@@ -65,5 +66,5 @@ function nextStatus(status) {
 }
 
 const { actions, reducer } = mazeSlice;
-export const { decrementSize, incrementSize, updateSquare, clearMaze, resetMarker, startMarker, endMarker } = actions;
+export const { decrementSize, incrementSize, updateSquare, defaultMaze, clearMaze, resetMarker, startMarker, endMarker } = actions;
 export default reducer;

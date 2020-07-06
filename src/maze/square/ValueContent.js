@@ -9,7 +9,7 @@ function round(value) {
   if (isNaN(value)) {
     return "";
   } else {
-    return Number(value).toFixed(3);
+    return Number(value).toFixed(2);
   }
 }
 

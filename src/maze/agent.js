@@ -13,6 +13,10 @@ function nextMove(arr, epsilon, agent, matrix) {
 
 function checkStop(agent, matrix) {
   let end = indexOf2d(matrix, 3);
+  if (!end) {
+    return;
+  }
+
   if (agent.x === end[0] && agent.y === end[1]) {
     return true;
   } else {
