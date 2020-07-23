@@ -30,7 +30,7 @@ function MazeGrid() {
   };
 
   //Agent
-  let agentDisplay = display === "qTable";
+  let agentDisplay = (display === "qTable");
   let stop = checkStop(agent, matrix);
   useInterval(
     () => {
@@ -68,22 +68,26 @@ function MazeGrid() {
       case "arrows":
         return <ArrowContent arrow={arrows[stage][x][y]} />;
       case "qTable":
-        let current = qTable[stage][agent.x][agent.y];
-        if (x === agent.x && y === agent.y) {
-          return <FontAwesomeIcon icon="robot" />;
-        } else if (x === agent.x - 1 && y === agent.y) {
-          return <ValueContent value={current[Direction.UP]}/>;
-        } else if (x === agent.x + 1 && y === agent.y) {
-          return <ValueContent value={current[Direction.DOWN]}/>;
-        } else if (x === agent.x && y === agent.y - 1) {
-          return <ValueContent value={current[Direction.LEFT]}/>;
-        } else if (x === agent.x && y === agent.y + 1) {
-          return <ValueContent value={current[Direction.RIGHT]}/>;
-        }
+        return renderAgent(x, y);
       default:
         return;
     }
   };
+
+  const renderAgent = (x, y) => {
+    let current = qTable[stage][agent.x][agent.y];
+    if (x === agent.x && y === agent.y) {
+      return <FontAwesomeIcon icon="robot" />;
+    } else if (x === agent.x - 1 && y === agent.y) {
+      return <ValueContent value={current[Direction.UP]}/>;
+    } else if (x === agent.x + 1 && y === agent.y) {
+      return <ValueContent value={current[Direction.DOWN]}/>;
+    } else if (x === agent.x && y === agent.y - 1) {
+      return <ValueContent value={current[Direction.LEFT]}/>;
+    } else if (x === agent.x && y === agent.y + 1) {
+      return <ValueContent value={current[Direction.RIGHT]}/>;
+    }
+  }
 
   return (
     <div className="maze container">

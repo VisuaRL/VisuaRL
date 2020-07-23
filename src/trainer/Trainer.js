@@ -26,7 +26,7 @@ function Trainer() {
   return (
     <div>
       <h2>Trainer</h2>
-      <h6 className="mb-3">Solve the maze</h6>
+      <h6 className="mb-3">Train model to solve maze</h6>
       <form onSubmit={handleSubmit(submit)}>
         <div className="form-group">
           <label>

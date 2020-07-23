@@ -1,7 +1,9 @@
 import React from "react";
+import { Nav, Navbar } from "react-bootstrap";
 import "./App.css";
 import Maze from "./maze/Maze";
 import Trainer from "./trainer/Trainer";
+import Help from "./help/Help";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -18,9 +20,14 @@ function App() {
 
   return (
     <div className="App">
-      <nav className="navbar navbar-dark bg-dark">
-        <span className="navbar-brand mb-0 h1">VisuaRL</span>
-      </nav>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>VisuaRL</Navbar.Brand>
+        <Navbar.Collapse>
+          <Nav className="mr-auto">
+            <Nav.Link>Tutorial</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
       <div className="container">
         <div className="row justify-content-center">
@@ -29,6 +36,11 @@ function App() {
           </div>
           <div className="col-md-3">
             <Trainer />
+          </div>
+        </div>
+        <div className="mt-5 row justify-content-center">
+          <div className="col col-md-10">
+            <Help/>
           </div>
         </div>
       </div>

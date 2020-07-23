@@ -15,16 +15,15 @@ function MazeControls() {
   let plusDisabled = plusValidation(size);
 
   // Reset
-  function newMaze() {
-    dispatch(defaultMaze());
+  function editMaze() {
     dispatch(resetTrainer());
   }
 
   return (
     <div className="maze-controls d-flex justify-content-between">
       {isTrained && 
-        <button className="btn btn-sm btn-primary" onClick={newMaze}>
-          New maze
+        <button className="btn btn-sm btn-primary" onClick={editMaze}>
+          Edit maze
         </button>}
       {!isTrained &&
         <div>
@@ -48,7 +47,10 @@ function MazeControls() {
         </div>
       }
       {!isTrained && 
-        <button className="btn btn-sm btn-primary" onClick={() => dispatch(clearMaze())}>Clear</button>
+        <div>
+          <button className="btn btn-sm btn-primary mr-2" onClick={() => dispatch(defaultMaze())}>Default</button>
+          <button className="btn btn-sm btn-primary" onClick={() => dispatch(clearMaze())}>Clear</button>
+        </div>
       }
     </div>
   );
