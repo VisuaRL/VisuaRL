@@ -10,7 +10,7 @@ function Maze() {
   const isTrained = useSelector(state => state.trainer.display !== "none");
 
   return (
-    <div>
+    <div> 
       <h2>Maze</h2>
       <h6 className="mb-3">Design your own maze</h6>
       <MazeControls />

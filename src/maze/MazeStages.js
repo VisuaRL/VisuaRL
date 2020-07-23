@@ -42,7 +42,7 @@ function MazeStages() {
           onChange={value => dispatch(changeDisplay(value))}
         >
           <ToggleButton variant="info" size="sm" value="values">
-            Values
+            Rewards
           </ToggleButton>
           <ToggleButton variant="info" size="sm" value="arrows">
             Arrows

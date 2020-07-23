@@ -1,7 +1,6 @@
 import React from "react";
 import "./Trainer.css";
 import { useForm } from "react-hook-form";
-import { Modal, Popover, OverlayTrigger } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { requestTraining } from "../redux/trainer";
 
@@ -16,6 +15,8 @@ function Trainer() {
 
   // Validation
   let algo = watch("algo");
+  let gamma = watch("gamma");
+  let alpha = watch("alpha");
   let alphaDisabled = validateAlpha(algo);
 
   // Submit
@@ -29,9 +30,7 @@ function Trainer() {
       <h6 className="mb-3">Train model to solve maze</h6>
       <form onSubmit={handleSubmit(submit)}>
         <div className="form-group">
-          <label>
-            Algorithm
-          </label>
+          <label>Algorithm</label>
           <select className="custom-select" name="algo" ref={register}>
             <option value="dp">Dynamic programming</option>
             <option value="ql">Q-learning</option>
@@ -40,52 +39,41 @@ function Trainer() {
 
         <div className="form-group">
           <label>
-            Gamma
-            <OverlayTrigger
-              trigger={["hover", "touch"]}
-              placement="bottom"
-              overlay={gammaPop}
-            >
-              <span className="ml-1 badge badge-light">?</span>
-            </OverlayTrigger>
-            <br />
-            (0 to 1)
+            Gamma - {(gamma / 1) * 100}%
           </label>
           <input
-            className="form-control"
+            className="form-control-range"
             name="gamma"
-            type="number"
+            type="range"
             min="0"
             max="1"
             step="0.1"
             ref={register({ min: 0, max: 1 })}
           />
+          <small class="form-text">
+            How much importance is put on future rewards over immediate ones?
+          </small>
         </div>
 
         <div className="form-group">
           <label>
-            Alpha
-            <OverlayTrigger
-              trigger={["hover", "touch"]}
-              placement="bottom"
-              overlay={alphaPop}
-            >
-              <span className="ml-1 badge badge-light">?</span>
-            </OverlayTrigger>
-            <br />
-            (0 to 1)
+            Alpha - {alphaDisabled ? "N/A" : (alpha / 1) * 100 + "%"}
           </label>
           <input
-            className="form-control"
+            className="form-control-range"
             disabled={alphaDisabled}
             name="alpha"
-            type="number"
+            type="range"
             min="0"
             max="1"
             step="0.1"
             ref={register({ min: 0, max: 1 })}
           />
+          <small class="form-text">
+            How much importance is put on integrating new experiences into its value estimates?
+          </small>
         </div>
+
         <button type="submit" className="btn btn-primary">
           Train
         </button>
@@ -93,40 +81,6 @@ function Trainer() {
     </div>
   );
 }
-
-// Modal
-const algoModal = (
-  <Modal.Dialog>
-    <Modal.Header closeButton>
-      <Modal.Title>Modal title</Modal.Title>
-    </Modal.Header>
-
-    <Modal.Body>
-      <p>Modal body text goes here.</p>
-    </Modal.Body>
-  </Modal.Dialog>
-);
-
-// Popovers
-const gammaPop = (
-  <Popover>
-    <Popover.Title as="h3">Gamma</Popover.Title>
-    <Popover.Content>
-      Gamma (discount factor) controls how much importance the agent puts on
-      future rewards over immediate ones.
-    </Popover.Content>
-  </Popover>
-);
-
-const alphaPop = (
-  <Popover>
-    <Popover.Title as="h3">Alpha (Q-learning)</Popover.Title>
-    <Popover.Content>
-      Alpha (learning rate) controls how much importance the agent puts on
-      integrating new experiences into its value estimates.
-    </Popover.Content>
-  </Popover>
-);
 
 function validateAlpha(algo) {
   if (algo === "dp") {
