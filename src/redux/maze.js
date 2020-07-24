@@ -32,12 +32,15 @@ const mazeSlice = createSlice({
       let next = Status.EMPTY;
 
       if (state.marker === Status.START || state.marker === Status.END) {
-        // Remove other marker values
-        state.matrix.forEach(r => {
-          let index = r.findIndex(x => x === state.marker);
-          r[index] = Status.EMPTY;
-        });
+        // Remove other start values
+        if (state.marker === Status.START) {
+          state.matrix.forEach(r => {
+            let index = r.findIndex(x => x === Status.START);
+            r[index] = Status.EMPTY;
+          });
+        }
 
+        // Set marker
         next = state.marker;
         state.marker = Status.NONE;
       } else {

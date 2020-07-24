@@ -31,7 +31,7 @@ function Trainer() {
     } else {
       setError("matrix", {
         type: "manual",
-        message: "Maze must have 1 start and 1 end."
+        message: "Maze must have 1 start and at least 1 end."
       });
     }
     const submit = data => dispatch(requestTraining(matrix, data));
@@ -97,16 +97,18 @@ function Trainer() {
 }
 
 function validateMatrix(matrix) {
-  let startCounter = 0;
-  let endCounter = 0;
+  let start = false;
+  let end = false;
   matrix.forEach(r => {
     if (r.includes(Status.START)) {
-      startCounter++;
-    } else if (r.includes(Status.END)) {
-      endCounter++;
+      start = true;
+    }
+
+    if (r.includes(Status.END)) {
+      end = true;
     }
   });
-  return startCounter === 1 && endCounter === 1;
+  return start && end;
 }
 
 function validateAlpha(algo) {
