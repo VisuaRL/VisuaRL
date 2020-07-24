@@ -88,7 +88,7 @@ function App() {
             <Trainer />
           </div>
         </div>
-        <div className="mt-4 row justify-content-center">
+        <div className="help-row mt-4 row justify-content-center">
           <div className="col col-md-10">
             <Help />
           </div>
