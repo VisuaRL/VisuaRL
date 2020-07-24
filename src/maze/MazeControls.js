@@ -33,7 +33,7 @@ function MazeControls() {
               disabled={minusDisabled}>
               -
             </button>
-            <span>{size} x {size}</span>
+            <span>Size {size}</span>
             <button className="btn btn-sm btn-outline-primary"
               onClick={() => dispatch(incrementSize())}
               disabled={plusDisabled}>

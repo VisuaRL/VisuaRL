@@ -90,7 +90,7 @@ function MazeGrid() {
   }
 
   return (
-    <div className="maze container">
+    <div className="maze-grid container">
       {matrix.map((row, x) => (
         <div key={x} className="row">
           {row.map((status, y) => (

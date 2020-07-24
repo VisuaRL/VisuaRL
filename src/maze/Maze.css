@@ -1,5 +1,5 @@
 /* Maze styles */
-.maze.container {
+.maze-grid.container {
   background-color: black;
   font-size: 0.9rem;
 }
@@ -10,7 +10,7 @@
   }
 }
 
-.maze.container .col {
+.maze-grid.container .col {
   padding-left: 0px;
   padding-right: 0px;
   border: thin solid #007bff;
@@ -96,4 +96,17 @@
 .size-group span {
   padding-right: 10px;
   padding-left: 10px;
+}
+
+/* Badge styles */
+.badge-legend-border {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #007bff;
+}
+
+
+.badge-boundary {
+  background-color: black;
+  color: white;
 }
