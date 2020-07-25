@@ -42,7 +42,7 @@ function Trainer() {
     <div>
       <h2>Trainer</h2>
       <h6 className="mb-3">Train model to solve maze</h6>
-      <form onSubmit={onSubmit}>
+      <form className="trainer-form" onSubmit={onSubmit}>
         <div className="form-group">
           <label>Algorithm</label>
           <select className="custom-select" name="algo" ref={register}>

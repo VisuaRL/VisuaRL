@@ -43,11 +43,31 @@ function App() {
         </div>
       ),
       disableBeacon: true
+    },
+    {
+      target: ".trainer-form",
+      content: (
+        <div>
+          <h5>Train your model</h5>
+          <p>Select the algorithm and parameters for training a model to solve the maze.</p>
+        </div>
+      ),
+      disableBeacon: true
+    },
+    {
+      target: "#help",
+      content: (
+        <div>
+          <h5>Theory</h5>
+          <p>Read more about reinforcement learning and what the different parameters mean here.</p>
+        </div>
+      ),
+      disableBeacon: true
     }
   ];
   const joyrideCallback = data => {
     const { status } = data;
-    if (status == STATUS.FINISHED || status === STATUS.SKIPPED) {
+    if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
       setRun(false);
     }
   };
