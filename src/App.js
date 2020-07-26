@@ -5,6 +5,7 @@ import Maze from "./maze/Maze";
 import Trainer from "./trainer/Trainer";
 import Graph from "./graph/Graph";
 import GeneralHelp from "./help/GeneralHelp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Joyride, { STATUS } from "react-joyride";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -40,8 +41,13 @@ function App() {
       content: (
         <div>
           <h5>Maze configuration</h5>
-          <p>Here you can change the size of the maze, or clear it for a blank slate.</p>
-          <p>Every maze requires a single start and can have multiple end points.</p>
+          <p>
+            Here you can change the size of the maze, or clear it for a blank
+            slate.
+          </p>
+          <p>
+            Every maze requires a single start and can have multiple end points.
+          </p>
         </div>
       ),
       disableBeacon: true
@@ -51,7 +57,10 @@ function App() {
       content: (
         <div>
           <h5>Train your model</h5>
-          <p>Select the algorithm and parameters for training a model to solve the maze.</p>
+          <p>
+            Select the algorithm and parameters for training a model to solve
+            the maze.
+          </p>
         </div>
       ),
       disableBeacon: true
@@ -84,6 +93,20 @@ function App() {
     }
   };
 
+  // Scroll top
+  const [showScroll, setShowScroll] = useState(false);
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  window.onscroll = () => {
+    if (
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
+    ) {
+      setShowScroll(true);
+    } else {
+      setShowScroll(false);
+    }
+  };
+
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
@@ -98,6 +121,15 @@ function App() {
           </button>
         </div>
       </Navbar>
+
+      {showScroll && <button
+        type="button"
+        id="top-btn"
+        class="btn btn-primary"
+        onClick={scrollTop}
+      >
+        <FontAwesomeIcon icon="arrow-up" />
+      </button>}
 
       <Joyride
         callback={joyrideCallback}

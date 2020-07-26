@@ -56,6 +56,16 @@ function GeneralHelp() {
           guides agent behavior.
         </p>
 
+        <a
+          href="https://www.codecogs.com/eqnedit.php?latex=R&space;=&space;\sum_{t=0}^{T}\gamma^t&space;r_t"
+          target="_blank"
+        >
+          <img
+            src="https://latex.codecogs.com/gif.latex?R&space;=&space;\sum_{t=0}^{T}\gamma^t&space;r_t"
+            title="R = \sum_{t=0}^{T}\gamma^t r_t"
+          />
+        </a>
+
         <p>
           Whenever an agent executes an action in the environment, it receives a
           reward. This is analogous to our own human experiences of interacting
@@ -66,8 +76,10 @@ function GeneralHelp() {
           reward can be defined as <var>r(s,a)</var>, a function of state and
           action. Intuitively, this refers to the reward recieved from being in
           state s and executing action a. In the long run, what the agent seems
-          to maximize is its long term cummulative reward, <span>R=...</span>.
-          In the equation, <strong>gamma</strong> is the discount factor.
+          to maximize is its long term cummulative reward, R (see equation
+          above). In the equation, <strong>gamma</strong> is the discount
+          factor. The equation above can be understood as the sum of rewards
+          weighted on time steps from the current time step.
         </p>
       </div>
     </div>

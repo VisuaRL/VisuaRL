@@ -9,6 +9,7 @@ const initialState = {
   epsilon: [],
   graphRewards: [],
   display: "none",
+  algo: "none",
   agentStart: { x: 0, y: 0 },
   agent: { x: 0, y: 0 },
   stage: 0,

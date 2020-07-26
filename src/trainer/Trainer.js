@@ -75,7 +75,7 @@ function Trainer() {
               ref={register({ min: 0, max: 1 })}
             />
             <small className="form-text">
-              How much importance is put on future rewards over immediate ones?
+              How much importance is put on future rewards over immediate ones? 
             </small>
           </div>
 
@@ -114,7 +114,7 @@ function Trainer() {
               step="0.005"
               ref={register({ min: 0.9, max: 1 })}
             />
-            <small className="form-text">SOMETHING SOMETHING EPSILON</small>
+            <small className="form-text">How much exploration should the agent conduct?</small>
           </div>
         </fieldset>
 
