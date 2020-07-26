@@ -15,7 +15,7 @@ function Graph() {
   const display = useSelector(state => state.trainer.display === "qTable");
   const rewards = useSelector(state => state.trainer.graphRewards);
   const data = rewards
-    .filter((_, i) => i % 9 === 0)
+    .filter((_, i) => i % 10 === 0)
     .map((y, x) => ({ reward: y, episode: (x*10)}));
 
   return (
