@@ -9,6 +9,7 @@ const initialState = {
   epsilon: [],
   graphRewards: [],
   display: "none",
+  agentStart: { x: 0, y: 0 },
   agent: { x: 0, y: 0 },
   stage: 0,
   totalStages: 0
@@ -36,6 +37,9 @@ const trainerSlice = createSlice({
     changeDisplay: (state, action) => {
       state.display = action.payload;
     },
+    setAgentStart: (state, action) => {
+      state.agentStart = action.payload;
+    },
     setAgent: (state, action) => {
       state.agent = action.payload;
     },
@@ -55,11 +59,11 @@ const trainerSlice = createSlice({
       state.totalStages = action.payload;
     },
     prevStage: state => {
-      state.agent = { x: 0, y: 0 };
+      state.agent = state.agentStart;
       state.stage--;
     },
     nextStage: state => {
-      state.agent = { x: 0, y: 0 };
+      state.agent = state.agentStart;
       state.stage++;
     },
     resetTrainer: () => initialState
@@ -75,6 +79,7 @@ export const {
   addEpsilon,
   addGraphRewards,
   changeDisplay,
+  setAgentStart,
   setAgent,
   agentUp,
   agentDown,
@@ -111,7 +116,9 @@ export function requestTraining(matrix, data) {
           case "sarsa":
             //set agent
             const index = indexOf2d(matrix, 2);
-            dispatch(setAgent({ x: index[0], y: index[1] }));
+            const agent = { x: index[0], y: index[1] };
+            dispatch(setAgentStart(agent));
+            dispatch(setAgent(agent));
 
             const { history, epsilon, rewards } = response.data;
             dispatch(addQTable(history));
