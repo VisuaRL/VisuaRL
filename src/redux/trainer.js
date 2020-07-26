@@ -98,6 +98,7 @@ export function requestTraining(matrix, data) {
     let { algo, gamma, alpha, epsilonDecay } = data;
     gamma = parseFloat(gamma);
     alpha = parseFloat(alpha);
+    epsilonDecay = parseFloat(epsilonDecay);
     const req = { matrix, gamma, alpha, epsilonDecay };
     dispatch(resetTrainer());
 
