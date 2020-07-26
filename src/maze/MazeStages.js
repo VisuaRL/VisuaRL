@@ -15,13 +15,13 @@ function MazeStages() {
   // Conversion
   let coefficient = 1;
   if(display === "qTable") {
-    coefficient = Math.round(totalEpisodes/totalStages);
-    currentStage = coefficient * currentStage;
+    coefficient = totalEpisodes/totalStages;
+    currentStage = Math.round(coefficient * currentStage);
     totalStages = totalEpisodes;  
   }
 
   // Validation
-  let prevDisabled = prevValidation(currentStage, coefficient);
+  let prevDisabled = prevValidation(currentStage, Math.round(coefficient));
   let nextDisabled = nextValidation(currentStage, totalStages);
 
   return (
