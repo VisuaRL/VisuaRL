@@ -109,9 +109,9 @@ function Trainer() {
           </small>
         </div>
 
-        <div class="custom-control custom-checkbox mb-3">
-          <input type="checkbox" class="custom-control-input" ref={register} id="customCheck1"/>
-          <label class="custom-control-label" for="customCheck1">Noisy rewards</label>
+        <div className="custom-control custom-checkbox mb-3">
+          <input name="noisyRewards" type="checkbox" className="custom-control-input" ref={register} id="customCheck1"/>
+          <label className="custom-control-label">Noisy rewards</label>
           <small className="form-text">
             Make rewards dynamic.
           </small>

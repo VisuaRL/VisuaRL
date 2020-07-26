@@ -109,10 +109,11 @@ export function requestTraining(matrix, data) {
             break;
           case "ql":
           case "sarsa":
-            // set agent
+            //set agent
             const index = indexOf2d(matrix, 2);
-            setAgent({ x: index[0], y: index[1] });
-
+            console.log(index);
+            dispatch(setAgent({ x: index[0], y: index[1] }));
+            
             const { history, epsilon, rewards } = response.data;
             dispatch(addQTable(history));
             dispatch(addEpsilon(epsilon));
