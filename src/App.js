@@ -57,11 +57,21 @@ function App() {
       disableBeacon: true
     },
     {
-      target: "#help",
+      target: "#help-general",
       content: (
         <div>
           <h5>Theory</h5>
-          <p>Read more about reinforcement learning and what the different parameters mean here.</p>
+          <p>Read more about reinforcement learning.</p>
+        </div>
+      ),
+      disableBeacon: true
+    },
+    {
+      target: "#help-param",
+      content: (
+        <div>
+          <h5>Parameters</h5>
+          <p>Learn more about what the different parameters mean.</p>
         </div>
       ),
       disableBeacon: true
