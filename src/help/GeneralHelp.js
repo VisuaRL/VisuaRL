@@ -1,12 +1,10 @@
 import React from "react";
 
-function Help() {
+function GeneralHelp() {
   return (
-    <div id="help">
+    <div id="help-general">
       <div id="introduction">
-        <h1>Reinforcement learning</h1>
-
-        <h2>What is RL?</h2>
+        <h3>What is reinforcement learning?</h3>
 
         <p>
           Reinforcement learning is the training of machine learning models to
@@ -29,7 +27,7 @@ function Help() {
       </div>
 
       <div id="types">
-        <h2>Model-based vs model-free reinforcement learning</h2>
+        <h3>Model-based vs model-free</h3>
 
         <p>
           Reinforcement learning can be broadly categorised into two components
@@ -50,7 +48,7 @@ function Help() {
       </div>
 
       <div id="rewards">
-        <h2>Rewards</h2>
+        <h3>Rewards</h3>
 
         <p>
           In the past few paragraphs, the idea of reward has been thrown around
@@ -71,37 +69,9 @@ function Help() {
           to maximize is its long term cummulative reward, <span>R=...</span>.
           In the equation, <strong>gamma</strong> is the discount factor.
         </p>
-
-        <h3>Gamma</h3>
-
-        <p>
-          Gamma controls how much importance an agent places on rewards from
-          future time steps. This can be explained using an analogy. For
-          example, if we humans have a high gamma value in our own reward
-          function, we might place more emphasis on long term rewards, for
-          instance, investment returns in a decades time. If we have a very
-          small gamma value, then we might be more shortsighted and place less
-          emphasis on short term rewards, driving us to forgo the ten year long
-          investment for ones that realize in a shorter amount of time, even if
-          the returns are not as high.
-        </p>
-      </div>
-
-      <div id="dp">
-        <h2>
-          Dynamic Programming&nbsp;
-          <span className="badge badge-secondary">model-based</span>
-        </h2>
-      </div>
-
-      <div id="qLearning">
-        <h2>
-          Q-Learning&nbsp;
-          <span className="badge badge-secondary">model-free</span>
-        </h2>
       </div>
     </div>
   );
 }
 
-export default Help;
+export default GeneralHelp;

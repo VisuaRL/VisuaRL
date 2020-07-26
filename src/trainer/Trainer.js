@@ -10,7 +10,9 @@ function Trainer() {
   const defaultValues = {
     algo: "dp",
     gamma: 1,
-    alpha: 0.5
+    alpha: 0.5,
+    rewardScale: 1,
+    noisyRewards: false
   };
   const { register, handleSubmit, watch, setError, errors, clearErrors } = useForm({
     defaultValues
@@ -21,6 +23,7 @@ function Trainer() {
   let algo = watch("algo");
   let gamma = watch("gamma");
   let alpha = watch("alpha");
+  let rewardScale = watch("rewardScale");
   let alphaDisabled = !validateAlpha(algo);
 
   // Submit
@@ -48,18 +51,19 @@ function Trainer() {
           <select className="custom-select" name="algo" ref={register}>
             <option value="dp">Dynamic programming</option>
             <option value="ql">Q-learning</option>
+            <option value="sarsa">SARSA</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label>Gamma - {(gamma / 1) * 100}%</label>
+          <label>Gamma - {Math.round((gamma / 1) * 100)}%</label>
           <input
             className="form-control-range"
             name="gamma"
             type="range"
             min="0"
             max="1"
-            step="0.1"
+            step="0.05"
             ref={register({ min: 0, max: 1 })}
           />
           <small className="form-text">
@@ -69,7 +73,7 @@ function Trainer() {
 
         <div className="form-group">
           <label>
-            Alpha - {alphaDisabled ? "N/A" : (alpha / 1) * 100 + "%"}
+            Alpha - {alphaDisabled ? "N/A" : Math.round((alpha / 1) * 100) + "%"}
           </label>
           <input
             className="form-control-range"
@@ -78,12 +82,38 @@ function Trainer() {
             type="range"
             min="0"
             max="1"
-            step="0.1"
+            step="0.05"
             ref={register({ min: 0, max: 1 })}
           />
           <small className="form-text">
             How much importance is put on integrating new experiences into its
             value estimates?
+          </small>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Reward scale - {rewardScale}x
+          </label>
+          <input
+            className="form-control-range"
+            name="rewardScale"
+            type="range"
+            min="1"
+            max="10"
+            step="1"
+            ref={register({ min: 0, max: 1 })}
+          />
+          <small className="form-text">
+            Make rewards bigger. Useful when gamma is small.
+          </small>
+        </div>
+
+        <div class="custom-control custom-checkbox mb-3">
+          <input type="checkbox" class="custom-control-input" ref={register} id="customCheck1"/>
+          <label class="custom-control-label" for="customCheck1">Noisy rewards</label>
+          <small className="form-text">
+            Make rewards dynamic.
           </small>
         </div>
 
@@ -112,7 +142,7 @@ function validateMatrix(matrix) {
 }
 
 function validateAlpha(algo) {
-  if (algo === "ql") {
+  if (algo === "ql" || algo === "sarsa") {
     return true;
   } else {
     return false;

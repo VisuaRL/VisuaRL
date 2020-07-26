@@ -7,30 +7,22 @@ import { changeDisplay, prevStage, nextStage } from "../redux/trainer";
 function MazeStages() {
   // Setup
   const display = useSelector(state => state.trainer.display);
-  const currentStage = useSelector(state => state.trainer.stage + 1);
-  const totalStages = useSelector(state => state.trainer.totalStages);
-
+  let currentStage = useSelector(state => state.trainer.stage + 1);
+  let totalStages = useSelector(state => state.trainer.totalStages);
+  let totalEpisodes = useSelector(state => state.trainer.graphRewards.length);
   const dispatch = useDispatch();
 
-  // Validation
-  let prevDisabled = prevValidation(currentStage);
-  let nextDisabled = nextValidation(currentStage, totalStages);
-
-  let algo;
-  switch(display) {
-    case "values":
-      algo = "DP";
-      break;
-    case "arrows":
-      algo = "DP";
-      break;
-    case "qTable":
-      algo = "QL";
-      break;
-    default:
-      algo = "NONE";
-      break;
+  // Conversion
+  let coefficient = 1;
+  if(display === "qTable") {
+    coefficient = Math.round(totalEpisodes/totalStages);
+    currentStage = coefficient * currentStage;
+    totalStages = totalEpisodes;  
   }
+
+  // Validation
+  let prevDisabled = prevValidation(currentStage, coefficient);
+  let nextDisabled = nextValidation(currentStage, totalStages);
 
   return (
     <div className="maze-controls-2 d-flex justify-content-between">
@@ -58,7 +50,7 @@ function MazeStages() {
           Back
         </button>
         <span className="mr-2 ml-2">
-          Training stage ({algo}) {currentStage}/{totalStages}
+          Training episode {currentStage}/{totalStages}
         </span>
         <button
           className="btn btn-sm btn-outline-primary"
@@ -72,9 +64,9 @@ function MazeStages() {
   );
 }
 
-function prevValidation(current) {
+function prevValidation(current, min) {
   let disabled = false;
-  if (current === 1) {
+  if (current === min) {
     disabled = true;
   }
   return disabled;

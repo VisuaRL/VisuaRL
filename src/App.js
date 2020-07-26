@@ -3,7 +3,8 @@ import { Navbar } from "react-bootstrap";
 import "./App.css";
 import Maze from "./maze/Maze";
 import Trainer from "./trainer/Trainer";
-import Help from "./help/Help";
+import Graph from "./graph/Graph";
+import GeneralHelp from "./help/GeneralHelp";
 import Joyride, { STATUS } from "react-joyride";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,6 +15,7 @@ import {
   faArrowRight,
   faRobot
 } from "@fortawesome/free-solid-svg-icons";
+import ParamHelp from "./help/ParamHelp";
 
 function App() {
   // fontawesome
@@ -75,7 +77,7 @@ function App() {
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
-        <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <div className="mx-auto d-sm-flex d-block flex-sm-nowrap">
           <Navbar.Brand>VisuaRL</Navbar.Brand>
           <button
             onClick={() => setRun(true)}
@@ -101,16 +103,24 @@ function App() {
 
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col col-xl-7 col-lg-7 col-md-9">
+          <div className="col-lg-7">
             <Maze />
           </div>
           <div className="col-md-3">
             <Trainer />
           </div>
         </div>
-        <div className="help-row mt-4 row justify-content-center">
+        <div className="mt-4 row justify-content-center">
           <div className="col col-md-10">
-            <Help />
+            <Graph />
+          </div>
+        </div>
+        <div className="help-row mt-4 row justify-content-center">
+          <div className="col col-md-5">
+            <GeneralHelp />
+          </div>
+          <div className="col col-md-5">
+            <ParamHelp />
           </div>
         </div>
       </div>

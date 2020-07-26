@@ -7,6 +7,7 @@ const initialState = {
   arrows: [],
   qTable: [],
   epsilon: [],
+  graphRewards: [],
   display: "none",
   agent: { x: 0, y: 0 },
   stage: 0,
@@ -28,6 +29,9 @@ const trainerSlice = createSlice({
     },
     addEpsilon: (state, action) => {
       state.epsilon = action.payload;
+    },
+    addGraphRewards: (state, action) => {
+      state.graphRewards = action.payload;
     },
     changeDisplay: (state, action) => {
       state.display = action.payload;
@@ -69,6 +73,7 @@ export const {
   addArrows,
   addQTable,
   addEpsilon,
+  addGraphRewards,
   changeDisplay,
   setAgent,
   agentUp,
@@ -85,10 +90,10 @@ export default reducer;
 // Thunks
 export function requestTraining(matrix, data) {
   return dispatch => {
-    let { algo, gamma, alpha } = data;
+    let { algo, gamma, alpha, rewardScale, noisyRewards } = data;
     gamma = parseFloat(gamma);
     alpha = parseFloat(alpha);
-    const req = { matrix, gamma, alpha };
+    const req = { matrix, gamma, alpha, rewardScale, noisyRewards };
     dispatch(resetTrainer());
 
     axios
@@ -103,13 +108,15 @@ export function requestTraining(matrix, data) {
             dispatch(changeDisplay("values"));
             break;
           case "ql":
+          case "sarsa":
             // set agent
             const index = indexOf2d(matrix, 2);
             setAgent({ x: index[0], y: index[1] });
 
-            const { history, epsilon } = response.data;
+            const { history, epsilon, rewards } = response.data;
             dispatch(addQTable(history));
             dispatch(addEpsilon(epsilon));
+            dispatch(addGraphRewards(rewards));
             dispatch(totalStages(history.length));
             dispatch(changeDisplay("qTable"));
             break;
