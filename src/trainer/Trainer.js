@@ -11,8 +11,8 @@ function Trainer() {
     algo: "dp",
     gamma: 1,
     alpha: 0.5,
-    rewardScale: 1,
-    noisyRewards: false
+    epsilonDecay: 0.995,
+    rewardScale: 1
   };
   const { register, handleSubmit, watch, setError, errors, clearErrors } = useForm({
     defaultValues
@@ -23,6 +23,7 @@ function Trainer() {
   let algo = watch("algo");
   let gamma = watch("gamma");
   let alpha = watch("alpha");
+  let epsilonDecay = watch("epsilonDecay");
   let rewardScale = watch("rewardScale");
   let alphaDisabled = !validateAlpha(algo);
 
@@ -93,6 +94,25 @@ function Trainer() {
 
         <div className="form-group">
           <label>
+            Epsilon decay - {alphaDisabled ? "N/A" : epsilonDecay}
+          </label>
+          <input
+            className="form-control-range"
+            disabled={alphaDisabled}
+            name="epsilonDecay"
+            type="range"
+            min="0.9"
+            max="1"
+            step="0.005"
+            ref={register({ min: 0.9, max: 1 })}
+          />
+          <small className="form-text">
+            SOMETHING SOMETHING EPSILON
+          </small>
+        </div>
+
+        <div className="form-group">
+          <label>
             Reward scale - {rewardScale}x
           </label>
           <input
@@ -106,14 +126,6 @@ function Trainer() {
           />
           <small className="form-text">
             Make rewards bigger. Useful when gamma is small.
-          </small>
-        </div>
-
-        <div className="custom-control custom-checkbox mb-3">
-          <input name="noisyRewards" type="checkbox" className="custom-control-input" ref={register} id="customCheck1"/>
-          <label className="custom-control-label">Noisy rewards</label>
-          <small className="form-text">
-            Make rewards dynamic.
           </small>
         </div>
 

@@ -90,10 +90,10 @@ export default reducer;
 // Thunks
 export function requestTraining(matrix, data) {
   return dispatch => {
-    let { algo, gamma, alpha, rewardScale, noisyRewards } = data;
+    let { algo, gamma, alpha, epsilonDecay, rewardScale } = data;
     gamma = parseFloat(gamma);
     alpha = parseFloat(alpha);
-    const req = { matrix, gamma, alpha, rewardScale, noisyRewards };
+    const req = { matrix, gamma, alpha, epsilonDecay, rewardScale };
     dispatch(resetTrainer());
 
     axios
@@ -111,9 +111,8 @@ export function requestTraining(matrix, data) {
           case "sarsa":
             //set agent
             const index = indexOf2d(matrix, 2);
-            console.log(index);
             dispatch(setAgent({ x: index[0], y: index[1] }));
-            
+
             const { history, epsilon, rewards } = response.data;
             dispatch(addQTable(history));
             dispatch(addEpsilon(epsilon));
