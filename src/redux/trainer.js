@@ -95,10 +95,10 @@ export default reducer;
 // Thunks
 export function requestTraining(matrix, data) {
   return dispatch => {
-    let { algo, gamma, alpha, epsilonDecay, rewardScale } = data;
+    let { algo, gamma, alpha, epsilonDecay } = data;
     gamma = parseFloat(gamma);
     alpha = parseFloat(alpha);
-    const req = { matrix, gamma, alpha, epsilonDecay, rewardScale };
+    const req = { matrix, gamma, alpha, epsilonDecay };
     dispatch(resetTrainer());
 
     axios

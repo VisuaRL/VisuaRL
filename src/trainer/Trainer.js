@@ -31,7 +31,6 @@ function Trainer() {
   let gamma = watch("gamma");
   let alpha = watch("alpha");
   let epsilonDecay = watch("epsilonDecay");
-  let rewardScale = watch("rewardScale");
   let alphaDisabled = !validateAlpha(algo);
 
   // Submit
@@ -116,22 +115,6 @@ function Trainer() {
               ref={register({ min: 0.9, max: 1 })}
             />
             <small className="form-text">SOMETHING SOMETHING EPSILON</small>
-          </div>
-
-          <div className="form-group">
-            <label>Reward scale - {rewardScale}x</label>
-            <input
-              className="form-control-range"
-              name="rewardScale"
-              type="range"
-              min="1"
-              max="10"
-              step="1"
-              ref={register({ min: 0, max: 1 })}
-            />
-            <small className="form-text">
-              Make rewards bigger. Useful when gamma is small.
-            </small>
           </div>
         </fieldset>
 
