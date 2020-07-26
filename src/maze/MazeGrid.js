@@ -8,6 +8,7 @@ import ArrowContent from "./square/ArrowContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Direction, checkStop, nextMove } from "./agent";
 import { useInterval } from "../util";
+import Status from "../constants/status";
 
 function MazeGrid() {
   // Setup
@@ -99,7 +100,7 @@ function MazeGrid() {
                 status={status}
                 onMouseEnter={e => handleEnter(e, x, y, status)}
               >
-                {renderContent(x, y)}
+                {status !== Status.EMPTY && renderContent(x, y)}
               </Square>
             </div>
           ))}
