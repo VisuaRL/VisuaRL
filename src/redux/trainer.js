@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { indexOf2d } from "../util";
+import Status from "../constants/status";
 
 const initialState = {
   values: [],
@@ -11,6 +12,7 @@ const initialState = {
   display: "none",
   algo: "none",
   agentStart: { x: 0, y: 0 },
+  agentEnds: [{x: 0, y: 0}],
   agent: { x: 0, y: 0 },
   stage: 0,
   totalStages: 0
@@ -40,6 +42,9 @@ const trainerSlice = createSlice({
     },
     setAgentStart: (state, action) => {
       state.agentStart = action.payload;
+    },
+    setAgentEnds: (state, action) => {
+      state.agentEnds = action.payload;
     },
     setAgent: (state, action) => {
       state.agent = action.payload;
@@ -81,6 +86,7 @@ export const {
   addGraphRewards,
   changeDisplay,
   setAgentStart,
+  setAgentEnds,
   setAgent,
   agentUp,
   agentDown,
@@ -95,7 +101,7 @@ export default reducer;
 
 // Thunks
 export function requestTraining(matrix, data) {
-  return dispatch => {
+  return (dispatch) => {
     let { algo, gamma, alpha, epsilonDecay } = data;
     gamma = parseFloat(gamma);
     alpha = parseFloat(alpha);
@@ -117,10 +123,13 @@ export function requestTraining(matrix, data) {
           case "ql":
           case "sarsa":
             //set agent
-            const index = indexOf2d(matrix, 2);
-            const agent = { x: index[0], y: index[1] };
+            const start = indexOf2d(matrix, Status.START)[0];
+            const ends = indexOf2d(matrix, Status.END);
+
+            const agent = { x: start.x, y: start.y };
             dispatch(setAgentStart(agent));
             dispatch(setAgent(agent));
+            dispatch(setAgentEnds(ends));
 
             const { history, epsilon, rewards } = response.data;
             dispatch(addQTable(history));

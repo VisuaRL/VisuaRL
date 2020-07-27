@@ -1,5 +1,3 @@
-import { indexOf2d } from "../util.js";
-
 const Direction = { UP: 0, DOWN: 1, LEFT: 2, RIGHT: 3 };
 
 function nextMove(arr, epsilon, agent, matrix) {
@@ -11,17 +9,8 @@ function nextMove(arr, epsilon, agent, matrix) {
   }
 }
 
-function checkStop(agent, matrix) {
-  let end = indexOf2d(matrix, 3);
-  if (!end) {
-    return;
-  }
-
-  if (agent.x === end[0] && agent.y === end[1]) {
-    return true;
-  } else {
-    return false;
-  }
+function checkStop(agent, agentEnds) {
+  return agentEnds.some(end => end.x === agent.x && end.y === agent.y);
 }
 
 function randomLegalMove(agent, matrix) {

@@ -125,7 +125,7 @@ function App() {
       {showScroll && <button
         type="button"
         id="top-btn"
-        class="btn btn-primary"
+        className="btn btn-primary"
         onClick={scrollTop}
       >
         <FontAwesomeIcon icon="arrow-up" />

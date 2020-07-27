@@ -19,6 +19,7 @@ function MazeGrid() {
   const qTable = useSelector(state => state.trainer.qTable);
   const epsilon = useSelector(state => state.trainer.epsilon);
   const agent = useSelector(state => state.trainer.agent);
+  const agentEnds = useSelector(state => state.trainer.agentEnds);
   const stage = useSelector(state => state.trainer.stage);
   const dispatch = useDispatch();
 
@@ -32,7 +33,7 @@ function MazeGrid() {
 
   //Agent
   let agentDisplay = (display === "qTable");
-  let stop = checkStop(agent, matrix);
+  let stop = checkStop(agent, agentEnds);
   useInterval(
     () => {
       // Get current Q values and epsilon
