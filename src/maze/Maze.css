@@ -98,13 +98,16 @@
   padding-left: 10px;
 }
 
+#values-explanation {
+  width: 300px;
+}
+
 /* Badge styles */
 .badge-legend-border {
   border-style: solid;
   border-width: 1px;
   border-color: #007bff;
 }
-
 
 .badge-boundary {
   background-color: black;

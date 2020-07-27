@@ -14,10 +14,10 @@ function MazeStages() {
 
   // Conversion
   let coefficient = 1;
-  if(display === "qTable") {
-    coefficient = totalEpisodes/totalStages;
+  if (display === "qTable") {
+    coefficient = totalEpisodes / totalStages;
     currentStage = Math.round(coefficient * currentStage);
-    totalStages = totalEpisodes;  
+    totalStages = totalEpisodes;
   }
 
   // Validation
@@ -27,19 +27,25 @@ function MazeStages() {
   return (
     <div className="maze-controls-2 d-flex justify-content-between">
       {(display === "values" || display === "arrows") && (
-        <ToggleButtonGroup
-          type="radio"
-          name="options"
-          value={display}
-          onChange={value => dispatch(changeDisplay(value))}
-        >
-          <ToggleButton variant="info" size="sm" value="values">
-            Values
-          </ToggleButton>
-          <ToggleButton variant="info" size="sm" value="arrows">
-            Arrows
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <div>
+          <ToggleButtonGroup
+            type="radio"
+            name="options"
+            value={display}
+            onChange={value => dispatch(changeDisplay(value))}
+          >
+            <ToggleButton variant="info" size="sm" value="values">
+              Values
+            </ToggleButton>
+            <ToggleButton variant="info" size="sm" value="arrows">
+              Arrows
+            </ToggleButton>
+          </ToggleButtonGroup>
+          <p id="values-explanation">
+            These are the state value estimates of every tile. An agent can use
+            these values to take steps towards tiles with the highest value (arrows).
+          </p>
+        </div>
       )}
       <div>
         <button

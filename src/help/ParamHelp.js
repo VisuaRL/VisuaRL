@@ -1,6 +1,6 @@
 import React from "react";
-import 'katex/dist/katex.min.css';
-import { BlockMath } from 'react-katex';
+import "katex/dist/katex.min.css";
+import { BlockMath } from "react-katex";
 
 function ParamHelp() {
   return (
@@ -18,16 +18,15 @@ function ParamHelp() {
       <p>
         The agent plans its actions by iteratively updating state value
         estimates. A state value estimate can be thought of intuitively as the
-        value of being in a particular state, the formal equation for it is in
-        figure 1. It updates these estimates by a process known as policy
-        iteration. Policy iteration alternates between policy evaluation and
-        policy improvement. Policy evaluation re-estimates state value estimates
-        given a policy and policy improvement adjusts the given policy to
-        maximize cummulative rewards. Over many rounds of policy iteration, the
-        state values converge on the optimal state value estimates and the agent
-        acts greedily with respect to the state value estimates by simply taking
-        actions that result in the agent transitioning to the next state that
-        has the highest value.
+        value of being in a particular state. It updates these estimates by a
+        process known as policy iteration. Policy iteration alternates between
+        policy evaluation and policy improvement. Policy evaluation re-estimates
+        state value estimates given a policy and policy improvement adjusts the
+        given policy to maximize cummulative rewards. Over many rounds of policy
+        iteration, the state values converge on the optimal state value
+        estimates and the agent acts greedily with respect to the state value
+        estimates by simply taking actions that result in the agent
+        transitioning to the next state that has the highest value.
       </p>
 
       <p>
@@ -36,13 +35,13 @@ function ParamHelp() {
         every state/tile, if the agent were to act greedily with respect to the
         state values by taking steps in the direction with the highest adjacent
         state value, the agent would accrue the highest amount of rewards. In
-        otherwords, it would exit the maze the soonest!
+        other words, it would exit the maze the soonest!
       </p>
 
       <h3>Model-free RL Algorithms</h3>
       <h5>Q-Learning&nbsp;</h5>
 
-      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))"/>
+      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))" />
 
       <p>
         In Q-Learning, instead of maintaining state values, it directly computes
@@ -62,7 +61,7 @@ function ParamHelp() {
 
       <h5>SARSA&nbsp;</h5>
 
-      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))"/>
+      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))" />
 
       <p>
         SARSA gets its name from the tuple that describes a single state
@@ -88,8 +87,8 @@ function ParamHelp() {
 
       <h5>Action selection and epsilon-greedy exploration</h5>
       <p>
-        At each step, the agent has a choice of either taking 
-        the <strong>greedy</strong>&nbsp;action or the <strong>exploratory</strong>
+        At each step, the agent has a choice of either taking the{" "}
+        <strong>greedy</strong>&nbsp;action or the <strong>exploratory</strong>
         &nbsp;action. Taking the greedy action simply means taking the action
         which has the highest Q-value. Taking the exploratory action means
         taking an action which may not be greedy. The reason why an agent has to
@@ -127,7 +126,7 @@ function ParamHelp() {
 
       <h3>Alpha</h3>
 
-      <BlockMath math="TD-error = r + \gamma * Q(s',a') - Q(s,a)"/>
+      <BlockMath math="TD-error = r + \gamma * Q(s',a') - Q(s,a)" />
 
       <p>
         The alpha parameter controls how much of new information is used to
