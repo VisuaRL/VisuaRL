@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Trainer.css";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { requestTraining } from "../redux/trainer";
 import Status from "../constants/status";
+import ParamHelp from "../help/ParamHelp";
 
 function Trainer() {
   // Setup form
@@ -32,6 +33,11 @@ function Trainer() {
   let alpha = watch("alpha");
   let epsilonDecay = watch("epsilonDecay");
   let alphaDisabled = !validateAlpha(algo);
+
+  // Info modal
+  const [showModal, setShowModal] = useState(false);
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   // Submit
   const dispatch = useDispatch();
@@ -118,11 +124,15 @@ function Trainer() {
           </div>
         </fieldset>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mr-2">
           Train
+        </button>
+        <button onClick={handleShow} type="button" className="btn btn-info">
+          Learn more
         </button>
         {errors.matrix && <p className="errorMsg">{errors.matrix.message}</p>}
       </form>
+      <ParamHelp show={showModal} handleClose={handleClose}/>
     </div>
   );
 }
