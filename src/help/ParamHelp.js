@@ -60,12 +60,23 @@ function ParamHelp(props) {
               <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * max_{a'}Q(s',a') - Q(s,a))" />
 
               <p>
-                <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
-                value of action a executed in state <InlineMath math="s" />,{" "}
-                <InlineMath math="\alpha" /> is the learning rate and{" "}
-                <InlineMath math="\gamma" /> is the discount factor. The argmax
-                term is the Q-value of the action with the highest Q-value in
-                the next state, <InlineMath math="s'" />.
+                <ul>
+                  <li>
+                    <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
+                    value of action a executed in state <InlineMath math="s" />
+                  </li>
+                  <li>
+                    <InlineMath math="\alpha" /> (alpha) is the learning rate
+                  </li>
+                  <li>
+                    <InlineMath math="\gamma" /> (gamma) is the discount factor
+                  </li>
+                  <li>
+                    <InlineMath math="max_{a'}" /> (learning rate) is the
+                    Q-value of the action with the highest Q-value in the next
+                    state, <InlineMath math="s'" />.
+                  </li>
+                </ul>
               </p>
               <p>
                 In Q-Learning, instead of maintaining state values, it directly
@@ -89,14 +100,24 @@ function ParamHelp(props) {
               <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))" />
 
               <p>
-                <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
-                value of action a executed in state <InlineMath math="s" />,{" "}
-                <InlineMath math="\alpha" /> is the learning rate and{" "}
-                <InlineMath math="\gamma" /> is the discount factor. The{" "}
-                <InlineMath math="Q(s',a')" /> term is the Q-value associated
-                with the action <InlineMath math="a'" /> taken according to the
-                policy in the next state,
-                <InlineMath math="s'" />.
+                <ul>
+                  <li>
+                    <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
+                    value of action a executed in state <InlineMath math="s" />
+                  </li>
+                  <li>
+                    <InlineMath math="\alpha" /> (alpha) is the learning rate
+                  </li>
+                  <li>
+                    <InlineMath math="\gamma" /> (gamma) is the discount factor
+                  </li>
+                  <li>
+                    <InlineMath math="Q(s',a')" /> term is the Q-value
+                    associated with the action <InlineMath math="a'" /> taken
+                    according to the policy in the next state,
+                    <InlineMath math="s'" />.
+                  </li>
+                </ul>
               </p>
 
               <p>
