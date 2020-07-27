@@ -56,7 +56,17 @@ function ParamHelp(props) {
 
               <h3>Model-free RL Algorithms</h3>
               <h5>Q-Learning&nbsp;</h5>
-              <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))" />
+
+              <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * max_{a'}Q(s',a') - Q(s,a))" />
+
+              <p>
+                <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
+                value of action a executed in state <InlineMath math="s" />,{" "}
+                <InlineMath math="\alpha" /> is the learning rate and{" "}
+                <InlineMath math="\gamma" /> is the discount factor. The argmax
+                term is the Q-value of the action with the highest Q-value in
+                the next state, <InlineMath math="s'" />.
+              </p>
               <p>
                 In Q-Learning, instead of maintaining state values, it directly
                 computes the state-action value estimates. The state-action
@@ -77,6 +87,17 @@ function ParamHelp(props) {
               <h5>SARSA&nbsp;</h5>
 
               <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))" />
+
+              <p>
+                <InlineMath math="Q(s,a)" /> is the <InlineMath math="Q" />{" "}
+                value of action a executed in state <InlineMath math="s" />,{" "}
+                <InlineMath math="\alpha" /> is the learning rate and{" "}
+                <InlineMath math="\gamma" /> is the discount factor. The{" "}
+                <InlineMath math="Q(s',a')" /> term is the Q-value associated
+                with the action <InlineMath math="a'" /> taken according to the
+                policy in the next state,
+                <InlineMath math="s'" />.
+              </p>
 
               <p>
                 SARSA gets its name from the tuple that describes a single state
