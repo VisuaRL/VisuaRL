@@ -1,4 +1,6 @@
 import React from "react";
+import 'katex/dist/katex.min.css';
+import { BlockMath } from 'react-katex';
 
 function ParamHelp() {
   return (
@@ -40,15 +42,7 @@ function ParamHelp() {
       <h3>Model-free RL Algorithms</h3>
       <h5>Q-Learning&nbsp;</h5>
 
-      <a
-        href="https://www.codecogs.com/eqnedit.php?latex=Q(s,a)&space;=&space;Q(s,a)&space;-&space;\alpha&space;*&space;(r&space;&plus;&space;\gamma&space;*&space;argmax_{a'}Q(s',a')&space;-&space;Q(s,a))"
-        target="_blank"
-      >
-        <img
-          src="https://latex.codecogs.com/gif.latex?Q(s,a)&space;=&space;Q(s,a)&space;-&space;\alpha&space;*&space;(r&space;&plus;&space;\gamma&space;*&space;argmax_{a'}Q(s',a')&space;-&space;Q(s,a))"
-          title="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))"
-        />
-      </a>
+      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))"/>
 
       <p>
         In Q-Learning, instead of maintaining state values, it directly computes
@@ -68,15 +62,7 @@ function ParamHelp() {
 
       <h5>SARSA&nbsp;</h5>
 
-      <a
-        href="https://www.codecogs.com/eqnedit.php?latex=Q(s,a)&space;=&space;Q(s,a)&space;-&space;\alpha&space;*&space;(r&space;&plus;&space;\gamma&space;*&space;Q(s',a')&space;-&space;Q(s,a))"
-        target="_blank"
-      >
-        <img
-          src="https://latex.codecogs.com/gif.latex?Q(s,a)&space;=&space;Q(s,a)&space;-&space;\alpha&space;*&space;(r&space;&plus;&space;\gamma&space;*&space;Q(s',a')&space;-&space;Q(s,a))"
-          title="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))"
-        />
-      </a>
+      <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * Q(s',a') - Q(s,a))"/>
 
       <p>
         SARSA gets its name from the tuple that describes a single state
@@ -141,15 +127,7 @@ function ParamHelp() {
 
       <h3>Alpha</h3>
 
-      <a
-        href="https://www.codecogs.com/eqnedit.php?latex=TD-error&space;=&space;(r&space;&plus;&space;\gamma&space;*&space;Q(s',a')&space;-&space;Q(s,a)"
-        target="_blank"
-      >
-        <img
-          src="https://latex.codecogs.com/gif.latex?TD-error&space;=&space;(r&space;&plus;&space;\gamma&space;*&space;Q(s',a')&space;-&space;Q(s,a)"
-          title="TD-error = (r + \gamma * Q(s',a') - Q(s,a)"
-        />
-      </a>
+      <BlockMath math="TD-error = r + \gamma * Q(s',a') - Q(s,a)"/>
 
       <p>
         The alpha parameter controls how much of new information is used to

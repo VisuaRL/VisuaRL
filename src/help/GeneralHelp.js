@@ -1,4 +1,6 @@
 import React from "react";
+import 'katex/dist/katex.min.css';
+import { BlockMath } from 'react-katex';
 
 function GeneralHelp() {
   return (
@@ -56,15 +58,7 @@ function GeneralHelp() {
           guides agent behavior.
         </p>
 
-        <a
-          href="https://www.codecogs.com/eqnedit.php?latex=R&space;=&space;\sum_{t=0}^{T}\gamma^t&space;r_t"
-          target="_blank"
-        >
-          <img
-            src="https://latex.codecogs.com/gif.latex?R&space;=&space;\sum_{t=0}^{T}\gamma^t&space;r_t"
-            title="R = \sum_{t=0}^{T}\gamma^t r_t"
-          />
-        </a>
+        <BlockMath math="R = \sum_{t=0}^{T}\gamma^t r_t"/>
 
         <p>
           Whenever an agent executes an action in the environment, it receives a
