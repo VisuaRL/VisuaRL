@@ -16,7 +16,7 @@ function ParamHelp(props) {
       <Modal.Body>
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-md-5">
+            <div className="col-md-6">
               <h3>Model-based RL Algorithms</h3>
               <h5>Dynamic Programming&nbsp;</h5>
 
@@ -56,8 +56,8 @@ function ParamHelp(props) {
 
               <h3>Model-free RL Algorithms</h3>
               <h5>Q-Learning&nbsp;</h5>
+              <BlockMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))" />
               <p>
-                <InlineMath math="Q(s,a) = Q(s,a) - \alpha * (r + \gamma * argmax_{a'}Q(s',a') - Q(s,a))" />
                 In Q-Learning, instead of maintaining state values, it directly
                 computes the state-action value estimates. The state-action
                 value is also known as the Q-value which is an estimate of the
@@ -102,7 +102,7 @@ function ParamHelp(props) {
                 state is dependent on the agent's current policy.
               </p>
             </div>
-            <div className="col-md-5">
+            <div className="col-md-6">
               <h3>Gamma</h3>
               <p>
                 Gamma controls how much importance an agent places on rewards
