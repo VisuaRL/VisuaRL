@@ -9,7 +9,7 @@ import ParamHelp from "../help/ParamHelp";
 function Trainer() {
   // Setup form
   const defaultValues = {
-    algo: "dp",
+    algo: "ql",
     gamma: 1,
     alpha: 0.5,
     epsilonDecay: 0.995,
@@ -62,9 +62,9 @@ function Trainer() {
         <div className="form-group">
           <label>Algorithm</label>
           <select className="custom-select" name="algo" ref={register}>
-            <option value="dp">Dynamic programming</option>
             <option value="ql">Q-learning</option>
             <option value="sarsa">SARSA</option>
+            <option value="dp">Dynamic programming</option>
           </select>
         </div>
 

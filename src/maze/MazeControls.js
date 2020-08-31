@@ -66,7 +66,7 @@ function minusValidation(size) {
 
 function plusValidation(size) {
   let disabled = false;
-  if (size === 15) {
+  if (size === 10) {
     disabled = true;
   }
   return disabled;
