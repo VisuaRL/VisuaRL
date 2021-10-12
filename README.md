@@ -1,6 +1,10 @@
 # VisuaRL 
 A tool to teach reinforcement learning.
 
+[Link to try](http://vrl-test.azurewebsites.net/)
+
+Note that it might take awhile for the training to load - don't panic!
+
 Frameworks used:
 - react
 - redux
