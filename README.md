@@ -1,6 +1,5 @@
 # VisuaRL 🤖
 ### A tool to visualize reinforcement learning.
-### [Link to try](http://vrl-test.azurewebsites.net/)
 
 ![Screenshot](https://user-images.githubusercontent.com/9282846/137101121-65383964-eb92-4404-a95e-97f16a8ee026.png)
 
